@@ -1,44 +1,27 @@
-class Usuario{
-    constructor(nombre,apellido,libros,mascotas){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.libros = libros;
-        this.mascotas = mascotas;
-        this.nombreLibros = []
+function func1(indiceDeExito) {
+    console.log("exito!! " + indiceDeExito);
+  }
+  
+  function func2(msg) {
+    console.log("exploto todo" + msg);
+  }
+  
+  function buscarElLibro(array, str, func1, func2) {
+    let encontrado = false;
+    let i = 0
+    for (i; i < array.length; i++) {
+      if (array[i] == str) {
+        encontrado = true;
+        break;
+      }
     }
-    getFullName(){
-        return console.log(`El nombre completo del usuario es ${this.nombre} ${this.apellido}`)
+  
+    if (encontrado == true) {
+      func1(i + 1);
+    } else {
+      func2("Error!!! No esta!!");
     }
-    addMascota(mascota){
-        this.mascotas.push(mascota)
-    }
-    countMascotas(){
-        return console.log(`Tiene ${this.mascotas.length} mascotas`)
-    }
-    addBook(libro){
-        this.libros.push(libro)
-    }
-    getBookNames(){
-        this.libros.forEach((libro) =>
-            {this.nombreLibros.push(libro.nombre)}
-        )
-        console.log(this.nombreLibros)
-    }
-};
-
-let usuario = new Usuario(
-    'Vicente',
-    'Oyarzun',
-    [
-        {nombre:'La Metamorfosis', autor:'Franz Kafka'},
-        {nombre:'1984', autor:'George Orwell'},
-        {nombre:'Fahrenheit 451', autor:'Ray Bradbury'}
-    ],
-    ['Pito Pablo','Lady','Laika','Tito','Zeus']
-);
-
-usuario.getFullName();
-usuario.addMascota('Buzz');
-usuario.countMascotas();
-usuario.addBook({nombre:'Demonio', autor:'Roberto Ampuero'});
-usuario.getBookNames()
+  }
+  
+  let arraydeLibros = ["frankestain", "dracula", "el lobo"];
+  buscarElLibro(arraydeLibros, "dracula", func1, func2);
