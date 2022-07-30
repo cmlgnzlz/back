@@ -1,7 +1,13 @@
 # **Curso Backend**
-# Entrega 2
+# Entrega 3
 ## Camilo González
 ## Tutor: Raúl Ahumada
 #
->Hola!\
->Las funciones vienen comentadas al final del archivo
+>Hola!
+>
+>Gracias por la correción de la semana pasada.\
+>Favor visitar las rutas /productos y /productorandom.
+>
+>Saludos
+
+
