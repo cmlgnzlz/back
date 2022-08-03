@@ -1,0 +1,23 @@
+<div class="formulario">
+    <form id="form" action="http://localhost:8080/api/products" method="post">
+        <fieldset>
+            <legend>Ingresa un nuevo producto</legend>
+            <div id="campo">
+                <label for="name">Ingresa el nombre</label>
+                <input type="text" id="name">
+            </div>
+            <div id="campo">
+                <label for="price">Ingresa el precio</label>
+                <input type="number" step="1" id="price">
+            </div>
+            <div id="campo">
+                <label for="qty"> Ingresa el stock</label>
+                <input type="number" step="1" id="qty">
+            </div>
+            <div id="campo">
+                <button id="reset" type="reset">Limpiar</button>
+                <button id="submit" type="submit">Enviar</button>
+            </div>
+       </fieldset>
+    </form>
+</div>
