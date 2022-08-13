@@ -1,0 +1,146 @@
+html{
+  scroll-behavior: smooth;
+  background-color: hwb(69 23% 75%);
+  font-family: 'Helvetica';
+}
+
+body{
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.titulo{
+  color: rgb(246, 243, 239);
+  font-size: 3em;
+  font-weight: 900;
+  margin:15px;
+  text-align: center;
+}
+
+.formulario{
+  background-image: linear-gradient(to right, hsl(51, 99%, 41%), rgb(242, 146, 12));
+  margin-top:2em;
+  padding:1em;
+  color:rgb(227, 65, 29);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  font-weight: 700;
+}
+
+#form legend{
+  background-color: rgb(255, 183, 0);
+  font-size: 1.4em;
+  color: rgb(246, 243, 239);;
+  font-weight: bolder;
+  margin: 10px;
+  text-align: center;
+}
+
+#form input[type="text"]{
+  width:300px;
+}
+
+.campo{
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+}
+.campo label{
+  margin-right:4px;
+}
+
+.botones{
+  display: flex;
+  justify-content: center;
+}
+
+.botones input{
+  padding: 2px;
+  margin: 15px;
+  font-weight: bolder;
+  font-size: 1.2em;
+}
+
+.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 33px; 
+  padding: 15px;
+  border-radius: 5px;
+  background-color: rgb(242, 146, 12);
+  width: 200px;
+  height: 20px;
+}
+
+.nb-item{
+  background-color: rgba(255, 0, 0, 0.416);
+  width: 45%;
+  margin-top: 3px; 
+  padding: 3px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color:azure;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.nb-item:hover{
+  background-color: rgba(248, 248, 248, 0.416);
+  color:rgb(144, 50, 0);
+  text-align: center;
+}
+
+.footer{
+  color: azure;
+}
+
+.footer:hover{
+  background-color: rgba(248, 248, 248, 0.416);
+  color:rgb(144, 50, 0);
+}
+
+.productos{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.producto{
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(248, 248, 248, 0.274);
+  margin: 40px;
+}
+
+.texto{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left:25px;
+  padding-right:25px;
+}
+
+.producto p{
+  color: rgb(246, 243, 239);
+  font-size: 1.1em;
+  font-weight: 900;
+  margin:3px;
+}
+
+.text{
+  color: rgb(255, 146, 4);
+} 
+
+.producto img{
+  width: 350px;
+}

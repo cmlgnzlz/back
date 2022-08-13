@@ -1,0 +1,37 @@
+[
+ {
+  "id": 1,
+  "name": "Mihai",
+  "price": "$29.9",
+  "qty": "100",
+  "img": "http://localhost:8080/public/images/1.jpg"
+ },
+ {
+  "id": 2,
+  "name": "Quimera",
+  "price": "$32.9",
+  "qty": "33",
+  "img": "http://localhost:8080/public/images/2.jpg"
+ },
+ {
+  "id": 3,
+  "name": "Nergüi",
+  "price": "$29.9",
+  "qty": "21",
+  "img": "http://localhost:8080/public/images/3.jpg"
+ },
+ {
+  "id": 4,
+  "name": "Codie",
+  "price": "$35.9",
+  "qty": "44",
+  "img": "http://localhost:8080/public/images/4.jpg"
+ },
+ {
+  "id": 5,
+  "name": "Adisa",
+  "price": "$39.9",
+  "qty": "11",
+  "img": "http://localhost:8080/public/images/5.jpg"
+ }
+]
