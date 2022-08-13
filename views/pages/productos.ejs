@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/public/styles.css">
+    <title><%=title %></title>    
+  </head>
+  <body>
+    <%- include('../partials/navbar'); %>
+    <h1 class="titulo"><%=title %></h1>
+    <div class="productos">
+        <% productos.forEach((item)=>{ %>
+            <div class="producto">
+                <div class="texto">
+                    <p><span class="text">ID:</span><%=item.id%></p>
+                    <p><span class="text">Nombre: </span> <%=item.name%></p>
+                    <p><span class="text">Precio:</span> <%=item.price%></p>
+                    <p><%=item.qty%><span class="text"> disponibles</span></p>
+                </div>
+                <img src="<%=item.img %>"/>
+            </div>
+        <% }) %>
+    </div>
+    <%- include('../partials/footer'); %> 
+  </body>
+</html>
