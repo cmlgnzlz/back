@@ -1,0 +1,19 @@
+div(class='formulario')
+    form(id='form' onsubmit='return enviar()')
+        legend='Ingresa un nuevo producto'
+        div
+            div(class='campo')
+                label( for='name' )="Nombre"
+                input( type='text' id='name' name='name' required )
+            div( class='campo' )
+                label( for='price' )="Precio"
+                input( type='number' step='1' id='price' name='price' required )
+            div( class='campo' )
+                label( for='qty' )="Stock"
+                input( type='number' step='1' id='qty' name='qty' required )
+            div( class='campo' )
+                label( for='img' )="URL de img"
+                input( type='text' id='img' name='img' required )
+            div( class='botones' )
+                input( type='reset' id='reset' value='Limpiar' )
+                input( type='submit' id='submit' value='Enviar' )    

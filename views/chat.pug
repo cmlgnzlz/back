@@ -1,0 +1,16 @@
+div(id='chat')
+    div(class='titulo')
+        span="Centro de mensajes"
+    div(id='cajaMensajes')
+        for mensaje in chatLog
+            p
+                span(class='mensajeMail') #{mensaje.mail}
+                =" ["
+                span(class='mensajeStamp') #{mensaje.stamp}
+                ="]: "
+                span(class='mensajeMsg') #{mensaje.msg}
+    form(id='chatForm' onsubmit='return chatear()')
+        input(id='chatMail' type='email' name='chatMail' required placeholder="Ingresa un correo" )
+        input(id='chatMensaje' type='text' name='chatMensaje' value='' required )
+        div( class='botones' )
+            input(type='submit' id='submit' value='Enviar Mensaje' )
