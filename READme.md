@@ -38,5 +38,6 @@ DELETE http://localhost:8080/api/productos/:id (solo admin)
 > Metodo GET para los endpoint:\
 >https://funky-northern-thunder.glitch.me/api/productos/ \
 >https://funky-northern-thunder.glitch.me/api/productos/:id \
->https://funky-northern-thunder.glitch.me/api/carrito/:id \
+>https://funky-northern-thunder.glitch.me/api/carrito/:id\
+>*funcionando*
 #
