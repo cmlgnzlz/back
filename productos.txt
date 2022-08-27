@@ -4,34 +4,44 @@
   "name": "Mihai",
   "price": "$29.9",
   "qty": "100",
-  "img": "http://localhost:8080/public/images/1.jpg"
+  "img": "http://localhost:8080/public/images/1.jpg",
+  "desc": "Dolore numquam odit soluta possimus, laboriosam nobis quis iste esse, erat nulla. Sed aliquam nibh eget sem",
+  "code": 101
  },
  {
   "id": 2,
   "name": "Quimera",
   "price": "$32.9",
   "qty": "33",
-  "img": "http://localhost:8080/public/images/2.jpg"
+  "img": "http://localhost:8080/public/images/2.jpg",
+  "desc": "Similique pariatur consequuntur atque nostrum ab tempore expedita praesentium ea error cum",
+  "code": 201
  },
  {
   "id": 3,
   "name": "Nergüi",
   "price": "$29.9",
   "qty": "21",
-  "img": "http://localhost:8080/public/images/3.jpg"
+  "img": "http://localhost:8080/public/images/3.jpg",
+  "desc": "onsequuntur, fugiat ipsam? Etiam vitae justo convallis tellus interdum vestibulum convallis et magna",
+  "code": 301
  },
  {
   "id": 4,
   "name": "Codie",
   "price": "$35.9",
   "qty": "44",
-  "img": "http://localhost:8080/public/images/4.jpg"
+  "img": "http://localhost:8080/public/images/4.jpg",
+  "desc": "Cum impedit doloribus adipisci exercitationem minima doloremque? luctus risus at faucibus malesuada",
+  "code": 401
  },
  {
   "id": 5,
   "name": "Adisa",
   "price": "$39.9",
-  "qty": "11",
-  "img": "http://localhost:8080/public/images/5.jpg"
+  "qty": "22",
+  "img": "http://localhost:8080/public/images/5.jpg",
+  "desc": "Dolor sit amet consectetur adipisicing elit. purus ipsum, sollicitudin ac nisl vitae, bibendum ",
+  "code": 501
  }
 ]

@@ -17,20 +17,23 @@ body{
   display: flex;
   align-self: center;
   justify-content: center;
-  width:30%;
+  width:100%;
+  margin-bottom: 20px;
   background-color: rgb(255, 183, 0);
+  flex-wrap: nowrap;
 }
 
 .titulo span{
-  font-size: 1.4em;
+  font-size: 1.7em;
   color: rgb(246, 243, 239);;
   font-weight: 900;
-  margin: 10px;
+  margin: 7px;
   text-align: center;
-
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.formulario{
+#formulario{
   background-image: linear-gradient(to right, hsl(51, 99%, 41%), rgb(242, 146, 12));
   margin-top:2em;
   padding:1em;
@@ -40,15 +43,6 @@ body{
   align-items: center;
   width: 70%;
   font-weight: 700;
-}
-
-#form legend{
-  background-color: rgb(255, 183, 0);
-  font-size: 1.4em;
-  color: rgb(246, 243, 239);;
-  font-weight: bolder;
-  margin: 10px;
-  text-align: center;
 }
 
 #form input[type="text"]{
@@ -116,15 +110,25 @@ body{
   color:rgb(144, 50, 0);
 }
 
-.productos{
+#productos{
   background-image: linear-gradient(to right, hsl(51, 99%, 41%), rgb(242, 146, 12));
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   width: 70%;
   padding:1em;
   padding-bottom: 1em;
+}
+
+.productos{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.productos table{
+  align-self: center;
 }
 
 .producto{

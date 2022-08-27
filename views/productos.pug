@@ -1,15 +1,16 @@
-div(class='productos')
+div(id='productos')
     div(class='titulo')
         span="Listado de productos"
     div(class='productos')
-        table(style='width:60%', border='1')
-            tbody(id='tabla')
+        table(id='tabla' style='width:60%', border='1')
+            tbody
                 tr
                     th ID
                     th Nombre
                     th Precio
                     th Stock
                     th Img
+            div(id='listaProductos') 
                 for item in productos
                     tr
                         td(class='text') #{item.id}
@@ -18,3 +19,4 @@ div(class='productos')
                         td(class='text') #{item.qty}
                         td(class='img')
                             img(src=item.img)
+                    

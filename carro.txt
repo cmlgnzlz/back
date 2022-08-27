@@ -1,0 +1,70 @@
+[
+ {
+  "id": 1,
+  "stamp": "27-08-2022 00:18:32",
+  "productos": [
+   {
+    "id": 2,
+    "name": "Quimera",
+    "price": "$32.9",
+    "qty": 3,
+    "img": "http://localhost:8080/public/images/2.jpg",
+    "desc": "Similique pariatur consequuntur atque nostrum ab tempore expedita praesentium ea error cum",
+    "code": 201,
+    "stamp": "27-08-2022 00:20:25"
+   }
+  ]
+ },
+ {
+  "id": 2,
+  "stamp": "27-08-2022 00:41:59",
+  "productos": [
+   {
+    "id": 2,
+    "name": "Quimera",
+    "price": "$32.9",
+    "qty": 2,
+    "img": "http://localhost:8080/public/images/2.jpg",
+    "desc": "Similique pariatur consequuntur atque nostrum ab tempore expedita praesentium ea error cum",
+    "code": 201,
+    "stamp": "27-08-2022 00:42:42"
+   },
+   {
+    "id": 5,
+    "name": "Adisa",
+    "price": "$39.9",
+    "qty": 2,
+    "img": "http://localhost:8080/public/images/5.jpg",
+    "desc": "Dolor sit amet consectetur adipisicing elit. purus ipsum, sollicitudin ac nisl vitae, bibendum ",
+    "code": 501,
+    "stamp": "27-08-2022 00:42:46"
+   }
+  ]
+ },
+ {
+  "id": 3,
+  "stamp": "27-08-2022 00:42:31",
+  "productos": [
+   {
+    "id": 1,
+    "name": "Mihai",
+    "price": "$29.9",
+    "qty": 2,
+    "img": "http://localhost:8080/public/images/1.jpg",
+    "desc": "Dolore numquam odit soluta possimus, laboriosam nobis quis iste esse, erat nulla. Sed aliquam nibh eget sem",
+    "code": 101,
+    "stamp": "27-08-2022 00:43:01"
+   },
+   {
+    "id": 3,
+    "name": "Nergüi",
+    "price": "$29.9",
+    "qty": 2,
+    "img": "http://localhost:8080/public/images/3.jpg",
+    "desc": "onsequuntur, fugiat ipsam? Etiam vitae justo convallis tellus interdum vestibulum convallis et magna",
+    "code": 301,
+    "stamp": "27-08-2022 01:43:19"
+   }
+  ]
+ }
+]

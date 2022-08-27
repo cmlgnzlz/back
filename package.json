@@ -1,7 +1,7 @@
 {
   "name": "camilogonzalez",
-  "version": "0.0.1",
-  "description": "entrega 5",
+  "version": "0.0.7",
+  "description": "primera entrega proyecto final",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",

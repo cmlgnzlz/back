@@ -1,6 +1,7 @@
-div(class='formulario')
+div(id='formulario')
+    div(class='titulo')
+        span="Ingresa un producto nuevo"
     form(id='form' onsubmit='return enviar()')
-        legend='Ingresa un nuevo producto'
         div
             div(class='campo')
                 label( for='name' )="Nombre"
