@@ -27,17 +27,17 @@ DELETE http://localhost:8080/api/productos/:id (solo admin)
 >En *server.js*: Implementacion de funciones para endpoints y metodos solicitados.\
 >Nuevas funciones: saveNewCart,deleteCartById,getByCartId,addProdByCartId,deleteProdByCartId.\
 >Funcionalidad de carro probada en Postman.\
->POST http://localhost:8080/api/carrito/\
->DELETE http://localhost:8080/api/carrito/:id\
->GET http://localhost:8080/api/carrito/:id/productos/\
->POST http://localhost:8080/api/carrito/:id/productos/:id\
+>POST http://localhost:8080/api/carrito/ \
+>DELETE http://localhost:8080/api/carrito/:id \
+>GET http://localhost:8080/api/carrito/:id/productos/ \
+>POST http://localhost:8080/api/carrito/:id/productos/:id \
 >DELETE http://localhost:8080/api/carrito/:id/productos/:id
 >
 > **_Glitch_**\
-> https://funky-northern-thunder.glitch.me/\
+> https://funky-northern-thunder.glitch.me/ \
 > Metodo GET para los endpoint:\
->https://funky-northern-thunder.glitch.me/api/productos/\
->https://funky-northern-thunder.glitch.me/api/productos/:id\
->https://funky-northern-thunder.glitch.me/api/carrito/:id\
+>https://funky-northern-thunder.glitch.me/api/productos/ \
+>https://funky-northern-thunder.glitch.me/api/productos/:id \
+>https://funky-northern-thunder.glitch.me/api/carrito/:id \
 >*funcionando*
 #
