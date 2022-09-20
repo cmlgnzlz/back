@@ -1,0 +1,26 @@
+{
+  "name": "camilogonzalez",
+  "version": "0.1.0",
+  "description": "segunda entrega proyecto final",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lentes",
+    "gafas"
+  ],
+  "author": "Camilo Gonzalez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "firebase-admin": "^11.0.1",
+    "mongoose": "^6.6.0",
+    "pug": "^3.0.2",
+    "socket.io": "^4.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
