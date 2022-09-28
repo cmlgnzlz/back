@@ -1,20 +1,27 @@
-div(class='productos')
-    div(class='titulo')
-        span="Listado de productos"
-    div(class='productos')
-        table(style='width:60%', border='1')
-            tbody(id='tabla')
-                tr
-                    th ID
-                    th Nombre
-                    th Precio
-                    th Stock
-                    th Img
-                for item in productos
-                    tr
-                        td(class='text') #{item.id}
-                        td(class='text') #{item.name}
-                        td(class='text') #{item.price}
-                        td(class='text') #{item.qty}
-                        td(class='img')
-                            img(src=item.img)
+doctype html
+html
+    head
+        title='Productos'
+        style
+            include styles.css
+    include navbar.pug
+    body
+        div(class='productos')
+            div(class='titulo')
+                span="Listado de productos"
+            div(class='productos')
+                table(style='width:90%', border='1')
+                    tbody(id='tabla')
+                        tr
+                            th ID
+                            th NOMBRE
+                            th PRECIO
+                            th IMG
+                        for item in productos
+                            tr
+                                td(class='text-id') #{item.id}
+                                td(class='text-name') #{item.name}
+                                td(class='text-price') $ #{item.price}
+                                td(class='img')
+                                    img(src=item.img)         
+    include footer.pug

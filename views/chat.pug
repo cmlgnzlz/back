@@ -1,16 +1,16 @@
 div(id='chat')
     div(class='titulo')
         span="Centro de mensajes"
+        span(id='cajaCompresion')
     div(id='cajaMensajes')
-        for mensaje in chatLog
-            p
-                span(class='mensajeMail') #{mensaje.mail}
-                =" ["
-                span(class='mensajeStamp') #{mensaje.stamp}
-                ="]: "
-                span(class='mensajeMsg') #{mensaje.msg}
+            
     form(id='chatForm' onsubmit='return chatear()')
         input(id='chatMail' type='email' name='chatMail' required placeholder="Ingresa un correo" )
+        input(id='chatNomb' type='text' name='chatNomb' required placeholder="Ingresa tu nombre" )
+        input(id='chatApel' type='text' name='chatApell' required placeholder="Ingresa tu apellido" )
+        input(id='chatEdad' type='text' name='chatEdad' required placeholder="Ingresa tu edad" )
+        input(id='chatAlias' type='text' name='chatAlias' required placeholder="Ingresa tu alias" )
+        input(id='chatAvat' type='text' name='chatAvat' required placeholder="Ingresa la direccion de tu avatar" )
         input(id='chatMensaje' type='text' name='chatMensaje' value='' required )
         div( class='botones' )
-            input(type='submit' id='submit' value='Enviar Mensaje' )
+            input(type='submit' id='submit' value='Enviar Mensaje')

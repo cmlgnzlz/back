@@ -1,20 +1,21 @@
 # **Curso Backend**
-# Entrega 8
+# Entrega 11
 #
 ## Camilo González
 ## Tutor: Raúl Ahumada
 #
 
->Esta es la entrega ***8***.\
->**Primera Base de Datos**\
->Implementacion de tablas en *creaciontablas.js*
->
->***Implementacion de knex***\
->Modificacion de clase constructora en *server.js*.\
->Adaptacion a funciones getAll, save y saveChat.\
->Nuevos archivos  de configuracion de knex *optionsMDB.js, optionsSQLite.js*.
->
->
->\
+>Esta es la entrega ***11***.
+
+>**Generador de productos**\
+>Implementacion de clase constructora de productos con faker en *server.js*
+>Implementacion de vista para productos en ruta /api/productos-test/ mediante *productos.pug*
+
+>**Implementacion de normalizacion**\
+>Implementacion de manejo de datos con filesystem.\
+>Modificacion de clase constructora de chat en *server.js*.\
+>Modificacion a funciones getChat y saveChat.
+
+
 >Saludos!
 #
