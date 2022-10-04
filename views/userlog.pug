@@ -1,0 +1,8 @@
+div(class='userLog')
+    a(class='userText')
+        span Bienvenido 
+        span #{usuario.login}
+    a
+        form(id='logOutForm' method="GET" action="/logout")
+                div
+                    input(type='submit' id='submit' class='botonLogin' value='Salir')

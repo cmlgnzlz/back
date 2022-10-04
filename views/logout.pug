@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title='logout'
+        style
+            include styles.css
+    body
+        div(class='userLog')
+            a(class='userText')
+                span Hasta luego 
+                span #{usuario.login}
+        div(class='titulo') 
+            span Redirigiendo... 
+        script.
+            setTimeout(function () {window.location = "/"}, 2000)
+

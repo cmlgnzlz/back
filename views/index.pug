@@ -7,7 +7,10 @@ html
         script(src='/public/index.js')
         style
             include styles.css
-    include navbar.pug
+    div(id='navbar')
+        include navbar.pug
+        include userlog.pug
     body
+        include productos.pug
         include chat.pug            
     include footer.pug
