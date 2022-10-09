@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        title='Error en signup'
+        style
+            include styles.css
+    body
+        div(class='userLog')
+            a(class='userText')
+                span Usuario ya registrado
+        div(class='titulo') 
+            span Redirigiendo... 
+        script.
+            setTimeout(function () {window.location = "/signup"}, 2000)
+

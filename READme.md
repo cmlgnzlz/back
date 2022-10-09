@@ -1,24 +1,22 @@
 # **Curso Backend**
-# Entrega 12
+# Entrega 13
 #
 ## Camilo González
 ## Tutor: Raúl Ahumada
 #
 
->Esta es la entrega ***12***.
+>Esta es la entrega ***13***.
 
->**Reincorporacion de listado de productos**\
->Reincorporacion de archivos pertenencientes a vista de productos para respetar vista requerida en consigna.
-
->**Login por formulario**\
->Nueva ruta */login*.\
->Nuevos views, *login.pug*,*logout.pug*,*userlog.pug*.\
->*login.pug*: Implementacion de formulario de inicio de sesion.\
->*logout.pug*: Implementacion de mensaje de despedida y redireccion a login.\
->*userlog.pug*: Implementacion de banner con informacion de sesion y boton de logout.
+>**Passport**\
+>Nuevas rutas */login*.\
+>Nuevos views, *signup.pug*,*failogin.pug*,*failsignup.pug*.\
+>*signup.pug*: Implementacion de formulario de inicio de sesion.\
+>*failogin.pug*: Implementacion de mensaje de error al inicio de sesion.\
+>*failsignup.pug*: Implementacion de mensaje de error al registro.
 
 >**Persistencia**\
 >Implementacion de manejo de sesiones con mongo en *server.js*.
+>Nuevo schema *schemaUser.js*.
 
 >Saludos!
 #

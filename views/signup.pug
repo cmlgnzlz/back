@@ -1,16 +1,15 @@
 doctype html
 html
     head
-        title='Login'
+        title='Register'
         style
             include styles.css
         div(id='logInBox')
             div(class='titulo')
-                    span="Login de usuario"
-            form(id='loginForm' method="POST" action="/login") 
+                span="Registro de usuario"
+            form(id='loginForm' method="POST" action="/signup") 
                 input(id='username' type='email' name='username' required placeholder="Ingresa tu correo")
                 input(id='password' type='text' name='password' required placeholder="Ingresa tu contraseña")
                 div(class='botones')
-                    input(type='submit' id='submit' class='botonLogin' value='Ingresar')
-            div(class='botones')
-                button(onclick='location.href="/signup"' id='submit' class='botonLogin') Ir al signup
+                    input(type='submit' id='submit' class='botonLogin' value='Registro')
+            button(onclick='location.href="/"' id='submit' class='botonLogin') Ir al login

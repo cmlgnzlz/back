@@ -1,53 +1,138 @@
 const fs = require("fs");
 const express = require('express');
 const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+
 const app = express();
 const httpServer = require("http").createServer(app);
+httpServer.listen(process.env.PORT || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
+
 const io = require("socket.io")(httpServer);
 const MongoStore = require("connect-mongo");
 const mongoose = require('mongoose')
+const bcrypt = require("bcrypt");
 const { faker } = require("@faker-js/faker");
 faker.locale = 'es'
-
-httpServer.listen(process.env.PORT || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
 
 const normalizr = require("normalizr");
 const schema = normalizr.schema;
 const normalize = normalizr.normalize;
 const denormalize = normalizr.denormalize;
 
-const esquemaProd = require('./models/schemaProd')
+const esquemaProd = require('./models/schemaProd');
+const esquemaUser = require('./models/schemaUser');
+
+/* const redis = require("redis");
+const client = redis.createClient({
+    legacyMode: true,
+});
+client.connect();
+const RedisStore = require("connect-redis")(session); */
+
+function isValidPassword(user, password) {
+    return bcrypt.compareSync(password, user.password);
+}
+
+function createHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+}
+
+mongoose
+    .connect("mongodb+srv://cmlgnzlz:hzbKy1lTYIaO1Ljm@cluster0.a2hirij.mongodb.net/test?retryWrites=true&w=majority")
+    .then(() => console.log("Connected to DB"))
+    .catch((e) => {
+        console.error(e);
+        throw "ERROR CONECTANDO A LA DB";
+    });
+   
+passport.use(
+    "login",
+    new LocalStrategy((username, password, done) => {
+        esquemaUser.findOne({ username }, (err, user) => {
+            if (err) return done(err);
+            if (!user) {
+                return done(null, false);
+            }
+            if (!isValidPassword(user, password)) {
+                return done(null, false);
+            }
+            return done(null, user);
+        });
+    })
+);
+
+passport.use(
+    "signup",
+    new LocalStrategy(
+        {
+            passReqToCallback: true,
+        },
+        (req, username, password, done) => {
+            esquemaUser.findOne({ username: username }, function (err, user) {
+                if (err) {
+                    return done(err);
+                }
+                if (user) {
+                    return done(null, false);
+                }
+                const newUser = {
+                    username: username,
+                    password: createHash(password),
+                };
+                esquemaUser.create(newUser, (err, user) => {
+                    if (err) {
+                        return done(err);
+                    }
+                    return done(null, user);
+                });
+            });
+        }
+    )
+);
+
+passport.serializeUser((user, done) => {
+    done(null, user._id);
+});
+
+passport.deserializeUser((id, done) => {
+    console.log(id)
+    esquemaUser.findById(id, done);
+});
 
 app.use(express.json());
 app.use('/public', express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
+/* app.use(
+    session({
+        store: new RedisStore({ host: "localhost", port: 6379, client, ttl: 300 }),
+            secret: "secretisimo",
+            cookie: {
+                httpOnly: false,
+                secure: false,
+                maxAge: 600000, // 1 dia CAMBIAR POR 10 MIN
+            },
+            rolling: true,
+            resave: true,
+            saveUninitialized: false,
+    })
+); */
+app.use(session({ 
+    secret: 'secretisimo', 
+    cookie: {
+        httpOnly: false,
+        secure: false,
+        maxAge: 600000,
+    },
+    rolling: true,
+    resave: true,
+    saveUninitialized: false,   
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.set('view engine', 'pug');
 app.set('views', './views');
-app.use(
-    session({
-        store: MongoStore.create({
-        mongoUrl: "mongodb+srv://cmlgnzlz:hzbKy1lTYIaO1Ljm@cluster0.a2hirij.mongodb.net/?retryWrites=true&w=majority",
-        mongoOptions: {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        },
-        }),
-        secret: "un misterio",
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            maxAge: 600000, // cookie dura de 10 min
-            expires: 60000, // expira luego de 1 min de inactividad
-        },
-        autoRemove: 'native' //remueve sesiones expiradas
-    })
-);
-
-app.use(function(req,res,next){  //middleware que actualiza el tiempo de expiracion 
-    req.session._garbage = Date();
-    req.session.touch();
-    next()
-})
 
 class Contenedor{
 
@@ -130,25 +215,11 @@ class Producto{
         this.user = {};
     }
 
-    async connectMDB() {
-        try {
-            const URL = "mongodb+srv://cmlgnzlz:hzbKy1lTYIaO1Ljm@cluster0.a2hirij.mongodb.net/test?retryWrites=true&w=majority"
-            let rta = await mongoose.connect(URL, {
-                useNewUrlParser: true,
-                useUniFiedTopology: true
-            })
-        } catch (e) {
-            console.log(e)
-        }   
-    }
-
     async getAll(user){
         try {
-            await this.connectMDB();
             let datos = await esquemaProd.find();
             this.datos = datos;
             this.user = user
-            mongoose.disconnect();
         } catch (error) {
             console.log(error);
         }
@@ -159,51 +230,71 @@ const chat = new Contenedor();
 const productos = new Generador();
 const producto = new Producto();
 
-
 app.get("/", (req,res) => {
-    if(req.session.user==null){
-        res.render('login.pug')
-    } else {
+    if (req.isAuthenticated()) {
         res.redirect('/login')
-    }  
+    } 
+    else {
+        res.render('login.pug')
+    }
 });
 
-app.post("/login", (req,res) => {
-    const usuario = req.body;
-    req.session.user = usuario;
-    req.session.admin = true;
-    res.redirect('/login')
+app.post("/login", passport.authenticate("login", { failureRedirect: "/failogin" }), (req,res) => {
+    const { username, password } = req.user;
+    const user = { username, password };
+    producto
+        .getAll()
+        .then(() => res.render('index.pug', {productos:producto.datos, usuario:user}))
 })
 
 function auth(req, res, next) {
-    if (!req.session.admin) return res.status(403).render('login.pug');
-    return next();
+    if (req.isAuthenticated()) {
+        next()
+    } 
+    else {
+        res.redirect("/")
+    }
 }
 
 app.get("/login", auth, (req, res) => {
-    const user = req.session.user
+    const { username, password } = req.user;
+    const user = { username, password };
     producto
-        .getAll(user)
-        .then(() => res.render('index.pug', {productos:producto.datos, usuario:producto.user}))
+        .getAll()
+        .then(() => res.render('index.pug', {productos:producto.datos, usuario:user}))
 })
 
-app.get("/logout", (req, res, next) => {
-    if(req.session.user==null){
+app.post("/signup", passport.authenticate("signup", { failureRedirect: "/failsignup" }), (req,res) => {
+    res.redirect('/login')
+})
+
+app.get("/signup", (req, res) => {
+    res.render('signup.pug')
+})
+
+app.get("/failsignup", (req, res) => {
+    res.render('failsignup.pug')
+ })
+
+app.get("/failogin", (req, res) => {
+   res.render('failogin.pug')
+})
+
+app.get("/logout", (req, res) => {
+    if (req.isAuthenticated()) {
+        const { username, password } = req.user;
+        const user = { username, password };
+        req.logout()
+        res.render('logout.pug', {usuario:user})
+    } 
+    else {
         res.render('login.pug')
-    } else {
-        const user = req.session.user;
-        req.session.destroy(() => {
-            res.render('logout.pug', {usuario:user})}
-        )
     }
-    req.setTimeout(1000, function(){
-        res.redirect("/")
-    })
 });
 
 io.on('connect', (socket) => {
     console.log('Usuario conectado ' + socket.id);
-    //const req = socket.request
+
     socket.on('productos', () => {
         producto
         .getAll()
@@ -223,13 +314,6 @@ io.on('connect', (socket) => {
     })
 })
 
-app.all("*", (req,res) => {  
-    res.json({
-        error: -2,
-        descripcion: `ruta '${req.url}' metodo '${req.method}' no implementado`
-    });
-})
-
 app.get("/api/productos-test/", async (req,res) => {  
     try {
         await productos
@@ -239,3 +323,10 @@ app.get("/api/productos-test/", async (req,res) => {
         console.log(error)
     }
 });
+
+app.all("*", (req,res) => {  
+    res.json({
+        error: -2,
+        descripcion: `ruta '${req.url}' metodo '${req.method}' no implementado`
+    });
+})
