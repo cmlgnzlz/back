@@ -1,10 +1,11 @@
-doctype html
 html
     head
         title='Productos'
         style
             include styles.css
-    include navbar.pug
+    div(id='navbar')
+        include navbar.pug
+        include userlog.pug
     body
         div(class='productos')
             div(class='titulo')

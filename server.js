@@ -3,13 +3,16 @@ const express = require('express');
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const dotenv = require("dotenv");
+require("dotenv").config();
+const yargs = require("yargs/yargs")(process.argv.slice(2));
+const args = yargs.argv
+const { fork } = require("child_process");
 
 const app = express();
 const httpServer = require("http").createServer(app);
-httpServer.listen(process.env.PORT || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
-
+httpServer.listen(args["p"] || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
 const io = require("socket.io")(httpServer);
-const MongoStore = require("connect-mongo");
 const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
 const { faker } = require("@faker-js/faker");
@@ -23,13 +26,6 @@ const denormalize = normalizr.denormalize;
 const esquemaProd = require('./models/schemaProd');
 const esquemaUser = require('./models/schemaUser');
 
-/* const redis = require("redis");
-const client = redis.createClient({
-    legacyMode: true,
-});
-client.connect();
-const RedisStore = require("connect-redis")(session); */
-
 function isValidPassword(user, password) {
     return bcrypt.compareSync(password, user.password);
 }
@@ -39,7 +35,7 @@ function createHash(password) {
 }
 
 mongoose
-    .connect("mongodb+srv://cmlgnzlz:hzbKy1lTYIaO1Ljm@cluster0.a2hirij.mongodb.net/test?retryWrites=true&w=majority")
+    .connect(process.env.MONGOADD)
     .then(() => console.log("Connected to DB"))
     .catch((e) => {
         console.error(e);
@@ -96,29 +92,14 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    console.log(id)
     esquemaUser.findById(id, done);
 });
 
 app.use(express.json());
 app.use('/public', express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
-/* app.use(
-    session({
-        store: new RedisStore({ host: "localhost", port: 6379, client, ttl: 300 }),
-            secret: "secretisimo",
-            cookie: {
-                httpOnly: false,
-                secure: false,
-                maxAge: 600000, // 1 dia CAMBIAR POR 10 MIN
-            },
-            rolling: true,
-            resave: true,
-            saveUninitialized: false,
-    })
-); */
 app.use(session({ 
-    secret: 'secretisimo', 
+    secret: process.env.SECRETO, 
     cookie: {
         httpOnly: false,
         secure: false,
@@ -224,6 +205,7 @@ class Producto{
             console.log(error);
         }
     }
+
 };
 
 const chat = new Contenedor();
@@ -316,13 +298,43 @@ io.on('connect', (socket) => {
 
 app.get("/api/productos-test/", async (req,res) => {  
     try {
-        await productos
-        .popular()
-        .then(() => res.render('productosRandom.pug', { productos:productos.items } ));;
+        if (req.isAuthenticated()) {
+            const { username, password } = req.user;
+            const user = { username, password };
+            await productos
+                .popular()
+                .then(() => res.render('productosRandom.pug', { productos:productos.items, usuario:user } ));;
+        } else {
+            res.render('login.pug')
+        }
     } catch (error) {
         console.log(error)
     }
 });
+
+app.get("/info", (req, res) => {
+    try {
+        if (req.isAuthenticated()) {
+            const { username, password } = req.user;
+            const user = { username, password };
+            res.render('info.pug', {usuario:user})
+        } else {
+            res.render('login.pug')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.get("/api/randoms", (req, res) => {
+    let cant = req.query.cant || 100000000
+    let randomizar = fork("./func.js", [cant])
+    randomizar.send("start")
+    randomizar.on("message", (msg) => {
+        const { data } = msg;
+        res.render('randoms.pug', { randoms:data })
+    })
+})
 
 app.all("*", (req,res) => {  
     res.json({

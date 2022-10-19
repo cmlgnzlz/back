@@ -1,22 +1,23 @@
 # **Curso Backend**
-# Entrega 13
+# Entrega 14
 #
 ## Camilo González
 ## Tutor: Raúl Ahumada
 #
 
->Esta es la entrega ***13***.
+>Esta es la entrega ***14***.
 
->**Passport**\
->Nuevas rutas */login*.\
->Nuevos views, *signup.pug*,*failogin.pug*,*failsignup.pug*.\
->*signup.pug*: Implementacion de formulario de inicio de sesion.\
->*failogin.pug*: Implementacion de mensaje de error al inicio de sesion.\
->*failsignup.pug*: Implementacion de mensaje de error al registro.
+>**Env**\
+>Se mueven las keys a env
 
->**Persistencia**\
->Implementacion de manejo de sesiones con mongo en *server.js*.
->Nuevo schema *schemaUser.js*.
+>**Puerto**\
+>Escucha mediante la flag -p\
+>O predeterminado 8080.
+
+>**Process**\
+>Implementacion ruta */info* con nuevo view *info.pug*.\
+>Implmentacion ruta */api/randoms* con nuevo view *randoms.pug* y archivo *func.js* para el fork\
+>Consulta con query cant o predeterminado en 100000000.
 
 >Saludos!
 #
