@@ -11,3 +11,6 @@
 >Agrega flag booleana -c para iniciar en modo cluster cuando es *true*.\
 >Implementacion en ruta */info* con cantidad de procesadores iniciados para el servidor.\
 >Imagenes comprobando cantidad de procesos en */public*.
+
+>**Forever**\
+>Imagenes comprobando cantidad de procesos en */public*.
