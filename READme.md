@@ -1,23 +1,13 @@
 # **Curso Backend**
-# Entrega 14
+# Entrega 15
 #
 ## Camilo González
 ## Tutor: Raúl Ahumada
 #
 
->Esta es la entrega ***14***.
+>Esta es la entrega ***15***.
 
->**Env**\
->Se mueven las keys a env
-
->**Puerto**\
->Escucha mediante la flag -p\
->O predeterminado 8080.
-
->**Process**\
->Implementacion ruta */info* con nuevo view *info.pug*.\
->Implmentacion ruta */api/randoms* con nuevo view *randoms.pug* y archivo *func.js* para el fork\
->Consulta con query cant o predeterminado en 100000000.
-
->Saludos!
-#
+>**Cluster**\
+>Agrega flag booleana -c para iniciar en modo cluster cuando es *true*.\
+>Implementacion en ruta */info* con cantidad de procesadores iniciados para el servidor.\
+>Imagenes comprobando cantidad de procesos en */public*.

@@ -9,9 +9,29 @@ const yargs = require("yargs/yargs")(process.argv.slice(2));
 const args = yargs.argv
 const { fork } = require("child_process");
 
+const cluster = require("cluster")
 const app = express();
-const httpServer = require("http").createServer(app);
-httpServer.listen(args["p"] || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
+const numCPUs = require('os').cpus().length;
+const httpServer = {};
+if (cluster.isMaster && args["c"]) {
+    console.log('MODO CLUSTER ON')
+
+    for (var i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('death', function(worker) {
+        console.log('worker ' + worker.pid + ' died');
+        cluster.fork();
+    });
+
+    
+
+} else {
+    const httpServer = require("http").createServer(app);
+    httpServer.listen(args["p"] || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
+    
+}
 const io = require("socket.io")(httpServer);
 const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
@@ -314,12 +334,13 @@ app.get("/api/productos-test/", async (req,res) => {
 
 app.get("/info", (req, res) => {
     try {
-        if (req.isAuthenticated()) {
-            const { username, password } = req.user;
-            const user = { username, password };
-            res.render('info.pug', {usuario:user})
-        } else {
-            res.render('login.pug')
+        if(args["c"]){
+            let numCPU=numCPUs;
+            res.render('info.pug',{numCPU:numCPU})
+        }
+        else{
+            let numCPU=1;
+            res.render('info.pug',{numCPU:numCPU})
         }
     } catch (error) {
         console.log(error)

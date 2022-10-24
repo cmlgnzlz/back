@@ -6,7 +6,6 @@ html
             include styles.css
     div(id='navbar')
         include navbar.pug
-        include userlog.pug
     body
         div(class='info')
             a Argumentos de entrada 
@@ -23,4 +22,6 @@ html
             span #{process.pid}        
             a Carpeta del proyecto 
             span #{process.cwd()}        
+            a Cantidad de CPU
+            span #{numCPU}      
     include footer.pug
