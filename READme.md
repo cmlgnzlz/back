@@ -11,6 +11,6 @@
 >Para iniciar server:
 >>Usando CMD , dentro de carpeta /NginxNode/public/\
 >>>node server.js --modo cluster --port 8081\
->Para localhost:80/api/datos/\
+>Para localhost:80/api/randoms/\
 >node server.js --modo fork --port 8080\
->localhost:80/
+>Para localhost:80/
