@@ -8,10 +8,11 @@ require("dotenv").config();
 const yargs = require("yargs/yargs")(process.argv.slice(2));
 const args = yargs.argv
 const { fork } = require("child_process");
-
+const PORT = parseInt(process.argv[2] || 8080);
 const app = express();
 const httpServer = require("http").createServer(app);
-httpServer.listen(args["p"] || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
+
+httpServer.listen(PORT, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
 
 const io = require("socket.io")(httpServer);
 const mongoose = require('mongoose')
