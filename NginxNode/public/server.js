@@ -11,8 +11,27 @@ const { fork } = require("child_process");
 const app = express();
 const httpServer = require("http").createServer(app);
 app.enable("trust proxy");
+const cluster = require("cluster")
+const MODO = args["modo"]
 const PORT = parseInt(args["port"] || 8080);
-httpServer.listen(PORT, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));  
+const numCPUs = require('os').cpus().length;
+if (cluster.isMaster && MODO=='cluster' && PORT=='8081') {
+    console.log('MODO CLUSTER ON')
+
+    for (var i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('death', function(worker) {
+        console.log('worker ' + worker.pid + ' died');
+        cluster.fork();
+    });
+
+    
+
+} else {
+    httpServer.listen(PORT, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));  
+}
 
 const io = require("socket.io")(httpServer);
 const mongoose = require('mongoose')
