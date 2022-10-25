@@ -7,10 +7,10 @@
 
 >Esta es la entrega ***15***.
 
->**PM2**\
->Se adjuntan imagenes de procesos en diferentes metodos en */public*.
->Para iniciar fork: 
->>pm2 start server.js --name="camilo" --watch -- 8081
->Para iniciar cluster:
->>pm2 start server.js --name="camilo" --watch -i max -- 8082
-
+>**NGINX con cluster**\
+>Para iniciar server:
+>>Usando CMD , dentro de carpeta /NginxNode/public/\
+>>>node server.js --modo cluster --port 8081\
+>Para localhost:80/api/datos/\
+>node server.js --modo fork --port 8080\
+>localhost:80/
