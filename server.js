@@ -1,43 +1,25 @@
 const fs = require("fs");
 const express = require('express');
 const session = require("express-session");
+const compression = require('compression')
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const dotenv = require("dotenv");
 require("dotenv").config();
 const yargs = require("yargs/yargs")(process.argv.slice(2));
 const args = yargs.argv
-const { fork } = require("child_process");
-
-const cluster = require("cluster")
+const PORT = parseInt(process.argv[2] || 8080);
+const log4js = require('log4js');
 const app = express();
-const numCPUs = require('os').cpus().length;
-const httpServer = {};
-if (cluster.isMaster && args["c"]) {
-    console.log('MODO CLUSTER ON')
 
-    for (var i = 0; i < numCPUs; i++) {
-        cluster.fork();
-    }
+const httpServer = require("http").createServer(app);
+httpServer.listen(PORT || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
 
-    cluster.on('death', function(worker) {
-        console.log('worker ' + worker.pid + ' died');
-        cluster.fork();
-    });
-
-    
-
-} else {
-    const httpServer = require("http").createServer(app);
-    httpServer.listen(args["p"] || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
-    
-}
 const io = require("socket.io")(httpServer);
 const mongoose = require('mongoose')
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");   
 const { faker } = require("@faker-js/faker");
 faker.locale = 'es'
-
 const normalizr = require("normalizr");
 const schema = normalizr.schema;
 const normalize = normalizr.normalize;
@@ -45,6 +27,8 @@ const denormalize = normalizr.denormalize;
 
 const esquemaProd = require('./models/schemaProd');
 const esquemaUser = require('./models/schemaUser');
+
+app.use(compression())
 
 function isValidPassword(user, password) {
     return bcrypt.compareSync(password, user.password);
@@ -150,7 +134,7 @@ class Contenedor{
             const chatNormalized = normalize(chatJson, chats);
             return chatNormalized;
         } catch (error) {
-            console.log(error);
+            loggerErr.error(error);
         }
 
     }
@@ -173,9 +157,9 @@ class Contenedor{
             console.log(chateoFS)
             fs.promises.writeFile("chat.txt",chateoFS);
             return chatNormalized;
-      } catch (error) {
-          console.log(error);
-      }
+        } catch (error) {
+            loggerErr.error(error);
+        }
     }
 };
 
@@ -186,26 +170,39 @@ class Generador{
     }
 
     async popular(cant = 5) {
-        this.items = [];
-        const nuevos = [];
-        for (let i = 0; i < cant; i++) {
-            const nuevoProducto = await this.generarProducto(i+1);
-            const guardado = this.guardar(nuevoProducto);
-            nuevos.push(guardado);
+        try {
+            this.items = [];
+            const nuevos = [];
+            for (let i = 0; i < cant; i++) {
+                const nuevoProducto = await this.generarProducto(i+1);
+                const guardado = this.guardar(nuevoProducto);
+                nuevos.push(guardado);
+            }
+            return this.items;
+        } catch (error) {
+            loggerErr.error(error);
         }
-        return this.items;
     }
 
     async generarProducto(id) {
-        return {
-            id,
-            name: faker.lorem.word(),
-            img: faker.image.fashion(320,240,true),
-            price: faker.commerce.price(500,5000,0), 
+        try {
+            return {
+                id,
+                name: faker.lorem.word(),
+                img: faker.image.fashion(320,240,true),
+                price: faker.commerce.price(500,5000,0), 
+            }
+        } catch (error) {
+            loggerErr.error(error);    
         }
+
     }
     async guardar(nuevoUsuario) {
-        this.items.push(nuevoUsuario);
+        try {
+            this.items.push(nuevoUsuario);            
+        } catch (error) {
+            loggerErr.error(error);    
+        }
     }
 }
 
@@ -222,17 +219,36 @@ class Producto{
             this.datos = datos;
             this.user = user
         } catch (error) {
-            console.log(error);
+            loggerErr.error(error);
         }
     }
 
 };
+
+log4js.configure({
+  appenders: {
+    loggerConsole: { type: 'console' },
+    loggerFile: { type: 'file', filename: 'info.log' },
+    warnFile: { type: 'file', filename: 'warn.log' },
+    errorFile: { type: 'file', filename: 'error.log' },
+  },
+  categories: {
+    default: { appenders: ['loggerConsole','loggerFile'], level: 'info' },
+    warn: { appenders: ['loggerConsole','warnFile'], level: 'warn' },
+    error: { appenders: ['loggerConsole','errorFile'], level: 'error' },
+  },
+});
+
+const logger = log4js.getLogger('default');
+const loggerWarn = log4js.getLogger('warn');
+const loggerErr = log4js.getLogger('error');
 
 const chat = new Contenedor();
 const productos = new Generador();
 const producto = new Producto();
 
 app.get("/", (req,res) => {
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     if (req.isAuthenticated()) {
         res.redirect('/login')
     } 
@@ -242,6 +258,7 @@ app.get("/", (req,res) => {
 });
 
 app.post("/login", passport.authenticate("login", { failureRedirect: "/failogin" }), (req,res) => {
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     const { username, password } = req.user;
     const user = { username, password };
     producto
@@ -259,6 +276,7 @@ function auth(req, res, next) {
 }
 
 app.get("/login", auth, (req, res) => {
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     const { username, password } = req.user;
     const user = { username, password };
     producto
@@ -267,22 +285,27 @@ app.get("/login", auth, (req, res) => {
 })
 
 app.post("/signup", passport.authenticate("signup", { failureRedirect: "/failsignup" }), (req,res) => {
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     res.redirect('/login')
 })
 
 app.get("/signup", (req, res) => {
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     res.render('signup.pug')
 })
 
 app.get("/failsignup", (req, res) => {
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     res.render('failsignup.pug')
  })
 
 app.get("/failogin", (req, res) => {
-   res.render('failogin.pug')
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
+    res.render('failogin.pug')
 })
 
 app.get("/logout", (req, res) => {
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     if (req.isAuthenticated()) {
         const { username, password } = req.user;
         const user = { username, password };
@@ -317,6 +340,7 @@ io.on('connect', (socket) => {
 })
 
 app.get("/api/productos-test/", async (req,res) => {  
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     try {
         if (req.isAuthenticated()) {
             const { username, password } = req.user;
@@ -333,31 +357,41 @@ app.get("/api/productos-test/", async (req,res) => {
 });
 
 app.get("/info", (req, res) => {
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     try {
-        if(args["c"]){
-            let numCPU=numCPUs;
-            res.render('info.pug',{numCPU:numCPU})
-        }
-        else{
-            let numCPU=1;
-            res.render('info.pug',{numCPU:numCPU})
-        }
+        console.log(process.argv);
+        console.log(process.platform);
+        console.log(process.version)
+        console.log(process.memoryUsage.rss());
+        console.log(process.execPath);
+        console.log(process.pid);
+        console.log(process.cwd());
+        res.render('info.pug')
     } catch (error) {
         console.log(error)
     }
 })
 
 app.get("/api/randoms", (req, res) => {
-    let cant = req.query.cant || 100000000
-    let randomizar = fork("./func.js", [cant])
-    randomizar.send("start")
-    randomizar.on("message", (msg) => {
-        const { data } = msg;
-        res.render('randoms.pug', { randoms:data })
-    })
+    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
+    let cant = req.query.cant || 100000000;
+    const cuenta = {};
+    let randomsArray = [];
+    for (let i=0; i<=cant; i++) {
+        let num = Math.floor(Math.random() * (1000)+1);
+        randomsArray.push(num)
+    }
+    randomsArray.forEach(i => {
+        cuenta[i] = (cuenta[i] || 0) + 1
+    });
+    let data = Object.keys(cuenta).map((key) => [Number(key)]);
+    res.render('randoms.pug', { randoms:data })
 })
 
-app.all("*", (req,res) => {  
+app.get('/favicon.ico', (req, res) => res.status(200))
+
+app.all("*", (req,res) => {
+    loggerWarn.warn(`ruta '${req.url}' metodo '${req.method}' no implementado`);  
     res.json({
         error: -2,
         descripcion: `ruta '${req.url}' metodo '${req.method}' no implementado`

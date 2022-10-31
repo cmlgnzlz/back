@@ -1,13 +1,19 @@
 # **Curso Backend**
-# Entrega 15
+# Entrega 16
 #
 ## Camilo González
 ## Tutor: Raúl Ahumada
 #
 
->Esta es la entrega ***15***.
+>Esta es la entrega ***16***.
 
->**Cluster**\
->Agrega flag booleana -c para iniciar en modo cluster cuando es *true*.\
->Implementacion en ruta */info* con cantidad de procesadores iniciados para el servidor.\
->Imagenes comprobando cantidad de procesos en */public*.
+>**Compression**\
+>Se adjuntan imagenes comprobando el funcionamiento de compression en */public/images*
+
+>**Logger**\
+>Implementa *log4js*.\
+>Archivos log *error.log, info.log, warn.log*.
+
+>**Performance**\
+>Analisis en informe adjunto.
+
