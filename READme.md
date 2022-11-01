@@ -15,5 +15,5 @@
 >Archivos log *error.log, info.log, warn.log*.
 
 >**Performance**\
->Analisis en informe adjunto.
+>Analisis en informe adjunto *Informe.pdf*.
 
