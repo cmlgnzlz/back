@@ -100,6 +100,7 @@ passport.deserializeUser((id, done) => {
 app.use(express.json());
 app.use('/public', express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
+app.enable('trust proxy'); 
 app.use(session({ 
     secret: process.env.SECRETO, 
     cookie: {
@@ -107,9 +108,9 @@ app.use(session({
         secure: (process.env.NODE_ENV && process.env.NODE_ENV == 'production') ? true:false,
         maxAge: 600000,
     },
-    rolling: true,
-    resave: false,
-    saveUninitialized: true,   
+    resave: true,
+    saveUninitialized: true,
+    proxy: true,    
 }));
 app.use(passport.initialize());
 app.use(passport.session());
