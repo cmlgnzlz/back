@@ -6,14 +6,12 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const dotenv = require("dotenv");
 require("dotenv").config();
-const yargs = require("yargs/yargs")(process.argv.slice(2));
-const args = yargs.argv
-const PORT = parseInt(process.argv[2] || 8080);
+const PORT = process.env.PORT || 5000
 const log4js = require('log4js');
 const app = express();
 
 const httpServer = require("http").createServer(app);
-httpServer.listen(PORT || 8080, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
+httpServer.listen(PORT, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
 
 const io = require("socket.io")(httpServer);
 const mongoose = require('mongoose')
