@@ -106,12 +106,12 @@ app.use(session({
     secret: process.env.SECRETO, 
     cookie: {
         httpOnly: false,
-        secure: false,
+        secure: (process.env.NODE_ENV && process.env.NODE_ENV == 'production') ? true:false,
         maxAge: 600000,
     },
     rolling: true,
-    resave: true,
-    saveUninitialized: false,   
+    resave: false,
+    saveUninitialized: true,   
 }));
 app.use(passport.initialize());
 app.use(passport.session());
