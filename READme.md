@@ -1,19 +1,12 @@
 # **Curso Backend**
-# Entrega 16
+# Entrega 17
 #
 ## Camilo González
 ## Tutor: Raúl Ahumada
 #
 
->Esta es la entrega ***16***.
+>Esta es la entrega ***17***.
 
->**Compression**\
->Se adjuntan imagenes comprobando el funcionamiento de compression en */public/images*
-
->**Logger**\
->Implementa *log4js*.\
->Archivos log *error.log, info.log, warn.log*.
-
->**Performance**\
->Analisis en informe adjunto *Informe.pdf*.
+>**Deploy en Heroku**\
+>Adapta el proyecto para subirlo a Heroku.
 

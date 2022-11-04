@@ -359,13 +359,6 @@ app.get("/api/productos-test/", async (req,res) => {
 app.get("/info", (req, res) => {
     logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     try {
-        console.log(process.argv);
-        console.log(process.platform);
-        console.log(process.version)
-        console.log(process.memoryUsage.rss());
-        console.log(process.execPath);
-        console.log(process.pid);
-        console.log(process.cwd());
         res.render('info.pug')
     } catch (error) {
         console.log(error)
