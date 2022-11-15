@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        title='Subidor'
+        style
+            include styles.css
+        div(id='logInBox')
+            div(class='titulo')
+                span="Sube tu avatar"
+            form(id='loginForm' method="POST" action="/subidor" enctype="multipart/form-data")
+                div
+                    label Sube tu avatar
+                    input(type="file" name="avatar" required)
+                div
+                    input(type="submit" class='botonLogin' value="Enviar")

@@ -10,6 +10,11 @@ html
             form(id='loginForm' method="POST" action="/signup") 
                 input(id='username' type='email' name='username' required placeholder="Ingresa tu correo")
                 input(id='password' type='text' name='password' required placeholder="Ingresa tu contraseña")
+                input(id='nombre' type='text' name='nombre' required placeholder="Ingresa tu nombre")
+                input(id='direccion' type='text' name='direccion' required placeholder="Ingresa tu direccion")
+                input(id='edad' type='text' name='edad' required placeholder="Ingresa tu edad")
+                input(id='telefono' type='text' name='telefono' minlength="11" required placeholder="Ej: 569999999")
+                input(id='carroId' type='text' name='carroId' value=carro.id readonly)
                 div(class='botones')
-                    input(type='submit' id='submit' class='botonLogin' value='Registro')
+                    input(type='submit' id='submit' class='botonLogin' value='Continuar')
             button(onclick='location.href="/"' id='submit' class='botonLogin') Ir al login
