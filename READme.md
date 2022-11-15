@@ -35,11 +35,11 @@
 >Configuracion desde linea 138 en index.js.
 >
 >Envia correo luego del registro de un nuevo usuario\
->Ejemplo de correo: https://ethereal.email/message/Y3Kuz-dSuGr8-ZDBY3LOqxwMklBUP8-pAAAADBuqUMSzZltl25KgHj2KRm0\
+>Ejemplo de correo: https://ethereal.email/message/Y3Kuz-dSuGr8-ZDBY3LOqxwMklBUP8-pAAAADBuqUMSzZltl25KgHj2KRm0 \
 >Utilizado en saveNewCart, desde linea 266 en index.js.
 >
 >Envia correo luego del registro de una nueva compra\
->Ejemplo de correo: https://ethereal.email/message/Y3Kuz-dSuGr8-ZDBY3LO7dlA5-huhR82AAAADYiwpFnX-K309vR-kZXO7Cw\
+>Ejemplo de correo: https://ethereal.email/message/Y3Kuz-dSuGr8-ZDBY3LO7dlA5-huhR82AAAADYiwpFnX-K309vR-kZXO7Cw \
 >Utilizado en sendUserCart, desde linea 354 en index.js.
 
 >**Twilio**\
