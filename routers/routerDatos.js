@@ -1,6 +1,6 @@
 const Router = require('express'); 
 const passport = require("passport");
-const {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, subidor} = require("../controllers/productos")
+const {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, subidor} = require("../controllers/productos");
 const routerDatos = new Router();
 
 const multer = require('multer');

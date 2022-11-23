@@ -1,4 +1,4 @@
-const {logger} = require('../config/logger.js')
+const {logger} = require('../config/logger')
 
 async function getInfoController(req, res) {
     logger.info(`ruta '/info${req.url}' metodo '${req.method}'`);
