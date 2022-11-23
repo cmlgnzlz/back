@@ -5,8 +5,6 @@ const normalize = normalizr.normalize;
 const denormalize = normalizr.denormalize;
 const {loggerErr} = require('../config/logger');
 
-
-
 class Contenedor{
 
     constructor() {

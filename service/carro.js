@@ -7,7 +7,6 @@ const client = twilio(accountSid, authToken);
 
 const {loggerErr} = require('../config/logger')
 
-
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
   });
@@ -117,7 +116,6 @@ class Carrito{
             let doc = query.doc(String(id));
             let carro = await doc.get();
             let carroData = carro.data();
-            console.log(carroData)
             this.carro = carroData.productos;
             this.userdata = carroData.data;
             let userAvat = carroData.avatar;
