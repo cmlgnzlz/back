@@ -469,3 +469,198 @@
     }
   ]
 }
+[2022-12-05T18:32:41.751] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:13:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T18:33:04.029] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:13:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T18:33:06.358] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:13:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T18:33:07.328] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:13:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T18:33:10.033] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:13:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T18:43:48.338] [ERROR] error - TypeError: carrito.getUserInfo is not a function
+    at Data.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:42)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T18:44:12.068] [ERROR] error - TypeError: Carro.getUserInfo is not a function
+    at Data.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T18:44:15.223] [ERROR] error - TypeError: Carro.getUserInfo is not a function
+    at Data.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T18:44:52.562] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'getUserInfo')
+    at Data.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T18:49:19.392] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T18:50:24.431] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at complete (C:\Users\milog\Documents\32080\node_modules\passport\lib\middleware\authenticate.js:268:13)
+    at C:\Users\milog\Documents\32080\node_modules\passport\lib\middleware\authenticate.js:275:15
+    at pass (C:\Users\milog\Documents\32080\node_modules\passport\lib\authenticator.js:431:14)
+    at Authenticator.transformAuthInfo (C:\Users\milog\Documents\32080\node_modules\passport\lib\authenticator.js:453:5)
+    at C:\Users\milog\Documents\32080\node_modules\passport\lib\middleware\authenticate.js:272:22
+    at C:\Users\milog\Documents\32080\node_modules\passport\lib\http\request.js:52:7
+[2022-12-05T18:52:25.301] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T18:54:05.988] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:25)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T19:13:29.720] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:27)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T19:13:43.168] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:27)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T19:14:23.762] [ERROR] error - TypeError: Carrito.getUserInfo is not a function
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:42)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T19:14:39.358] [ERROR] error - TypeError: Carrito.getUserInfo is not a function
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:19:42)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T19:16:00.680] [ERROR] error - TypeError: Carrito.Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:27)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T19:16:29.774] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'Carrito')
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:39)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T19:16:42.530] [ERROR] error - TypeError: Carrito is not a constructor
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:27)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T19:17:08.302] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'Carrito')
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:17:39)
+    at getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at auth (C:\Users\milog\Documents\32080\routers\routerDatos.js:19:9)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+[2022-12-05T19:17:16.885] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'getUserInfo')
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:42)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T19:20:19.038] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'getUserInfo')
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:42)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T19:20:30.633] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'getUserInfo')
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:42)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T19:20:35.008] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'getUserInfo')
+    at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:42)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)

@@ -1,17 +1,17 @@
 const {logger} = require('../config/logger');
-const Carrito = require('../service/carro');
-const Producto = require('../service/productos');
-
-let producto = new Producto();
-let Carro = new Carrito();
+const Carrito = require('../model/DAOs/carro');
+const Producto = require('../model/DAOs/productos');
+let producto = new Producto()
+let Carro = new Carrito()
 
 async function getLogin(req,res) {
     logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
     const carrId = req.user.carrito;
     const user = req.user.username;
-    producto
-        .getAll(carrId)
-        .then(() => res.render('index.pug', {productos:producto.datos, usuario: user, userdata:producto.userdata}));
+    const productos = await producto.getProds();
+    const userdata = await Carro.getUserInfo(carrId);
+    productos.userdata = userdata.userdata;
+    res.render('index.pug', {productos:productos.datos, usuario: user, userdata:productos.userdata});
 };
 
 async function postSignup(req,res) {
@@ -70,6 +70,14 @@ async function getProd(req, res) {
         .getProds()
         .then(() => res.json(producto.datos));
 }
+
+async function getProdById(req, res) {
+    logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
+    const { id } = req.params;
+    producto
+        .getById(id)
+        .then(() => res.json(producto.byId));
+}
 async function postProd(req, res) {
     logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
     const product = req.body;
@@ -95,4 +103,4 @@ async function deleteProd(req,res) {
 
 
 
-module.exports = {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, subidor, getProd, postProd, putProd, deleteProd};
+module.exports = {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, subidor, getProd, getProdById, postProd, putProd, deleteProd};

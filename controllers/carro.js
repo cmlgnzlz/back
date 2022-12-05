@@ -1,5 +1,5 @@
 const {logger} = require('../config/logger');
-const Carrito = require('../service/carro');
+const Carrito = require('../model/DAOs/carro');
 let Carro = new Carrito();
 
 async function getCarrito(req,res) {

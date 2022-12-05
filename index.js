@@ -53,8 +53,8 @@ app.get("/", (req,res) => {
 
 app.get('/favicon.ico', (req, res) => res.status(200))
 
-const Contenedor = require('./service/chat')
-const chat = new Contenedor();
+const Chat = require('./model/DAOs/chat')
+const chat = new Chat();
 io.on('connect', (socket) => {
     console.log('Usuario conectado ' + socket.id);
 
