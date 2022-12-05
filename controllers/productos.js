@@ -64,4 +64,35 @@ async function subidor(req, res) {
     }
 };
 
-module.exports = {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, subidor};
+async function getProd(req, res) {
+    logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
+    producto
+        .getProds()
+        .then(() => res.json(producto.datos));
+}
+async function postProd(req, res) {
+    logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
+    const product = req.body;
+    producto
+        .save(product)
+        .then(() => res.json(producto.byId));
+}
+
+async function putProd(req, res) {
+    logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
+    const { id } = req.params
+    const body = req.body;
+    producto
+        .updateById(id,body)
+        .then(() => res.json(producto.byId));
+}
+async function deleteProd(req,res) {
+    const { id } = req.params;
+    producto
+        .deleteById(id)
+        .then(() => res.json(producto.datos))
+}
+
+
+
+module.exports = {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, subidor, getProd, postProd, putProd, deleteProd};

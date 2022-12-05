@@ -1,9 +1,5 @@
 const admin = require("firebase-admin");
 const serviceAccount = require("../api/bd/fireback-addcb-firebase-adminsdk-w2tqk-52c47a4269.json");
-const twilio = require("twilio");
-const accountSid =  'AC944b2ed8bb6d2d149139ecacffdc0d48';
-const authToken = process.env.TWILIO;
-const client = twilio(accountSid, authToken);
 
 const {loggerErr} = require('../config/logger')
 
@@ -159,26 +155,7 @@ class Carrito{
                 to: adminEth,
                 subject: 'Nueva compra en servidor',
                 html: html
-             }
-             const carroFono = "whatsapp:+"+this.userdata.telefono;
-             const info = await transporter.sendMail(mailOptions)
-             let whapp = "Nuevo pedido de: " + this.userdata.username + "\n"
-             carroHtml.forEach(producto => {
-                let carroProd = 
-                    "Nombre: " + 
-                    producto.name + 
-                    "\nPrecio: $" + 
-                    producto.price +
-                    "\nCantidad: " +
-                    producto.qty +
-                    "\n\n";
-                whapp = whapp + carroProd
-            });
-             const message = await client.messages.create({
-                body: whapp,
-                from: 'whatsapp:+14155238886',
-                to: carroFono
-             }) 
+            };
         } catch (error) {
             loggerErr.error(error);
         }        

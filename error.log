@@ -359,3 +359,113 @@
 [2022-11-23T14:56:04.366] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'userdata')
     at Producto.getAll (C:\Users\milog\Documents\32080\service\productos.js:21:38)
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T16:28:44.156] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'productos')
+    at Carrito.getUserInfo (C:\Users\milog\Documents\32080\service\carro.js:119:36)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Producto.getAll (C:\Users\milog\Documents\32080\service\productos.js:19:28)
+[2022-12-05T16:28:44.157] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'userdata')
+    at Producto.getAll (C:\Users\milog\Documents\32080\service\productos.js:21:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T16:29:40.307] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'productos')
+    at Carrito.getUserInfo (C:\Users\milog\Documents\32080\service\carro.js:119:36)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Producto.getAll (C:\Users\milog\Documents\32080\service\productos.js:19:28)
+[2022-12-05T16:29:40.309] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'userdata')
+    at Producto.getAll (C:\Users\milog\Documents\32080\service\productos.js:21:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T16:33:36.381] [ERROR] error - TypeError: this.connectMDB is not a function
+    at Producto.save (C:\Users\milog\Documents\32080\service\productos.js:30:24)
+    at postProd (C:\Users\milog\Documents\32080\controllers\productos.js:77:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:280:10)
+    at expressInit (C:\Users\milog\Documents\32080\node_modules\express\lib\middleware\init.js:40:5)
+[2022-12-05T16:34:43.047] [ERROR] error - MongoServerError: E11000 duplicate key error collection: test.productos index: _id_ dup key: { _id: ObjectId('6328d8f57247f154e9ad4348') }
+    at C:\Users\milog\Documents\32080\node_modules\mongoose\node_modules\mongodb\lib\operations\insert.js:53:33
+    at C:\Users\milog\Documents\32080\node_modules\mongoose\node_modules\mongodb\lib\cmap\connection_pool.js:299:25
+    at C:\Users\milog\Documents\32080\node_modules\mongoose\node_modules\mongodb\lib\sdam\server.js:212:17
+    at handleOperationResult (C:\Users\milog\Documents\32080\node_modules\mongoose\node_modules\mongodb\lib\sdam\server.js:284:20)
+    at Connection.onMessage (C:\Users\milog\Documents\32080\node_modules\mongoose\node_modules\mongodb\lib\cmap\connection.js:219:9)
+    at MessageStream.<anonymous> (C:\Users\milog\Documents\32080\node_modules\mongoose\node_modules\mongodb\lib\cmap\connection.js:60:60)
+    at MessageStream.emit (node:events:527:28)
+    at processIncomingData (C:\Users\milog\Documents\32080\node_modules\mongoose\node_modules\mongodb\lib\cmap\message_stream.js:132:20)
+    at MessageStream._write (C:\Users\milog\Documents\32080\node_modules\mongoose\node_modules\mongodb\lib\cmap\message_stream.js:33:9)
+    at writeOrBuffer (node:internal/streams/writable:389:12) {
+  index: 0,
+  code: 11000,
+  keyPattern: { _id: 1 },
+  keyValue: { _id: new ObjectId("6328d8f57247f154e9ad4348") },
+  [Symbol(errorLabels)]: Set(0) {}
+}
+[2022-12-05T17:20:31.200] [ERROR] error - TypeError: this.validar is not a function
+    at Producto.save (C:\Users\milog\Documents\32080\service\productos.js:30:18)
+    at postProd (C:\Users\milog\Documents\32080\controllers\productos.js:77:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:280:10)
+    at expressInit (C:\Users\milog\Documents\32080\node_modules\express\lib\middleware\init.js:40:5)
+[2022-12-05T17:21:48.497] [ERROR] error - [Error [ValidationError]: "img" is not allowed] {
+  _original: {
+    name: 'Mihailovic',
+    price: 33,
+    qty: 100,
+    img: '/public/images/3.jpg',
+    desc: 'Dolore numquam odit soluta possimus, laboriosam nobis quis iste esse, erat nulla. Sed aliquam nibh eget sem',
+    code: 101,
+    __v: 0
+  },
+  details: [
+    {
+      message: '"img" is not allowed',
+      path: [Array],
+      type: 'object.unknown',
+      context: [Object]
+    }
+  ]
+}
+[2022-12-05T17:22:35.093] [ERROR] error - [Error [ValidationError]: "img" is not allowed] {
+  _original: {
+    name: 'Mihailovic',
+    price: 33,
+    qty: 100,
+    img: '/public/images/3.jpg',
+    desc: 'Dolore numquam odit soluta possimus, laboriosam nobis quis iste esse, erat nulla. Sed aliquam nibh eget sem',
+    code: 101,
+    __v: 0
+  },
+  details: [
+    {
+      message: '"img" is not allowed',
+      path: [Array],
+      type: 'object.unknown',
+      context: [Object]
+    }
+  ]
+}
+[2022-12-05T17:22:40.519] [ERROR] error - [Error [ValidationError]: "code" is not allowed] {
+  _original: {
+    name: 'Mihailovic',
+    price: 33,
+    qty: 100,
+    img: '/public/images/3.jpg',
+    desc: 'Dolore numquam odit soluta possimus, laboriosam nobis quis iste esse, erat nulla. Sed aliquam nibh eget sem',
+    code: 101,
+    __v: 0
+  },
+  details: [
+    {
+      message: '"code" is not allowed',
+      path: [Array],
+      type: 'object.unknown',
+      context: [Object]
+    }
+  ]
+}

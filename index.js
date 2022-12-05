@@ -33,9 +33,11 @@ require('./config/passport')(app)
 const routerInfo = require('./routers/routerInfo')
 const routerCarro = require('./routers/routerCarro')
 const routerDatos = require('./routers/routerDatos')
+const routerProds = require('./routers/routerProds')
 app.use('/info', routerInfo)
 app.use('/login', routerDatos)
 app.use('/api/carrito', routerCarro)
+app.use('/api/productos', routerProds)
 app.set('view engine', 'pug');
 app.set('views', './views');
 
