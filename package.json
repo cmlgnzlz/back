@@ -1,11 +1,12 @@
 {
   "name": "camilogonzalez",
-  "version": "0.1.6",
-  "description": "entrega 16",
+  "version": "0.2.1",
+  "description": "entrega 21",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "set NODE_ENV=development&& node index.js",
+    "prod": "set NODE_ENV=production&& node index.js"
   },
   "keywords": [
     "lentes",

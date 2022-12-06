@@ -39,7 +39,7 @@ class Chat{
                 chatNormalized.entities,
             );
             let chateoFS = JSON.stringify(denormalizedChat)
-            fs.promises.writeFile("chat.txt",chateoFS);
+            fs.promises.writeFile("api/chat.txt",chateoFS);
             return chatNormalized;
         } catch (error) {
             loggerErr.error(error);

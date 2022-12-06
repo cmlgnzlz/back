@@ -1,7 +1,7 @@
 const admin = require("firebase-admin");
 const serviceAccount = require("../../api/bd/fireback-addcb-firebase-adminsdk-w2tqk-52c47a4269.json");
 const {loggerErr} = require('../../config/logger')
-const Producto = require('./productos');
+const Producto = require('../../api/productos');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -161,18 +161,18 @@ class Carrito{
         }        
     }
     async addProdByCartId(id,id_prod) {
-        const producto = new Producto();
+        let producto = new Producto();
         try {
             let db = admin.firestore();
             let query = db.collection('carritos');
             let doc = query.doc(String(id));
-            let productoAdd = await producto.getById(id_prod);
+            let getProduct = await producto.getById(id_prod);
             const item = await doc.update({
-                productos: admin.firestore.FieldValue.arrayUnion(productoAdd)
+                productos: admin.firestore.FieldValue.arrayUnion(getProduct)
             });
             let carro = await doc.get();
             let carroData = carro.data();
-            this.carro = carroData;            
+            this.carro = carroData;
         } catch (error) {
             loggerErr.error(error);
         }
@@ -180,14 +180,15 @@ class Carrito{
     }
     
     async deleteProdByCartId(id,id_prod) {
-        const producto = new Producto();
+        let producto = new Producto();
         try {
             let db = admin.firestore()
             let query = db.collection('carritos');
             let doc = query.doc(String(id));
-            let productoAdd = await producto.getById(id_prod);
+            let getProduct = await producto.getById(id_prod);
+            console.log(getProduct)
             const item = await doc.update({
-                productos: admin.firestore.FieldValue.arrayRemove(productoAdd)
+                productos: admin.firestore.FieldValue.arrayRemove(getProduct)
             })
             let carro = await doc.get();
             let carroData = carro.data();

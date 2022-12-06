@@ -1,16 +1,49 @@
 # **Curso Backend**
-# Entrega 21
+## Tutor: Raúl Ahumada
 #
 ## Camilo González
-## Tutor: Raúl Ahumada
 #
 
 >Esta es la ***Entrega 21***.
 
 >**Capas**
->>Modificaciones en servicios hacia carpeta *model*
+>>Modificaciones de servicios hacia carpeta */model.*
 >
->>**Configuraciones**\
->Las configuraciones de passport, logger y schema del usuario han sido localizadas en la carpeta */config*. 
-
+>**Configuraciones**
+>>Se crean *development.env* y *production.env*, los cuales controlan la persistencia de los productos.
+>
+>**Persistencia**
+>>La persistencia de los productos esta hecha en mongo y file:
+>>>La clase constructora base de los DAOS esta en *model/DAOs/productos.js*.
+>>>
+>>>La clase factory esta en esta en *model/DAOs/productosFactory.js*.
+>>
+>>>**MONGO**\
+>>>Corre con
+>>>>npm run prod
+>>>
+>>>DAO se encuentra en *model/DAOs/productosMongo.js*
+>>>
+>>>Api disponible en *api/productos.js*
+>>
+>>>**FILE**\
+>>>Corre con
+>>>>    npm run dev
+>>>
+>>>DAO se encuentra en *model/DAOs/productosFile.js*.
+>>>
+>>>Archivo de persistencia en *api/productos.txt*
+>>
+>**Router**
+>>Nuevo Router routerProds que controla los productos en *routers/routerProds.js*
+>>
+>>>GET de /api/productos/        listado de productos
+>>>
+>>>GET de /api/productos/:id     producto por id
+>>>
+>>>POST de /api/productos/       ingresar un nuevo producto
+>>>
+>>>PUT de /api/productos/:id     modificar un producto por id
+>>>
+>>>GET de /api/productos/:id     orracto un producto por id
 

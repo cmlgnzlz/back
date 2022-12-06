@@ -1,7 +1,10 @@
 const express = require('express');
 const compression = require('compression')
 const dotenv = require("dotenv");
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config(
+    {path: path.resolve(process.cwd(), process.env.NODE_ENV + ".env")}
+);
 const PORT = process.env.PORT || 5000
 const app = express();
 

@@ -20,3 +20,7 @@
 [2022-12-05T16:32:23.830] [WARN] warn - ruta '/api/productos' metodo 'POST' no implementado
 [2022-12-05T16:37:20.218] [WARN] warn - ruta '/api/productos/6' metodo 'POST' no implementado
 [2022-12-05T18:29:48.403] [WARN] warn - ruta '/api/productos/6' metodo 'GET' no implementado
+[2022-12-05T21:03:00.331] [WARN] warn - ruta '/api/carrito/6' metodo 'GET' no implementado
+[2022-12-05T22:37:09.024] [WARN] warn - ruta '/api/productos/4' metodo 'POST' no implementado
+[2022-12-05T22:59:45.550] [WARN] warn - ruta '/api/productos/6' metodo 'POST' no implementado
+[2022-12-05T23:44:07.871] [WARN] warn - ruta '/api/carrito/36/' metodo 'GET' no implementado

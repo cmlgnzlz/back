@@ -1,6 +1,6 @@
 const {logger} = require('../config/logger');
 const Carrito = require('../model/DAOs/carro');
-const Producto = require('../model/DAOs/productos');
+const Producto = require('../api/productos');
 let producto = new Producto()
 let Carro = new Carrito()
 
@@ -8,9 +8,11 @@ async function getLogin(req,res) {
     logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
     const carrId = req.user.carrito;
     const user = req.user.username;
-    const productos = await producto.getProds();
+    const productos = [];
+    productos.datos = await producto.getProds();
     const userdata = await Carro.getUserInfo(carrId);
     productos.userdata = userdata.userdata;
+    console.log(productos)
     res.render('index.pug', {productos:productos.datos, usuario: user, userdata:productos.userdata});
 };
 
@@ -68,7 +70,7 @@ async function getProd(req, res) {
     logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
     producto
         .getProds()
-        .then(() => res.json(producto.datos));
+        .then(() => res.json(producto.productos.datos));
 }
 
 async function getProdById(req, res) {
@@ -76,14 +78,14 @@ async function getProdById(req, res) {
     const { id } = req.params;
     producto
         .getById(id)
-        .then(() => res.json(producto.byId));
+        .then(() => res.json(producto.productos.byId));
 }
 async function postProd(req, res) {
     logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
     const product = req.body;
     producto
         .save(product)
-        .then(() => res.json(producto.byId));
+        .then(() => res.json(producto.productos.byId));
 }
 
 async function putProd(req, res) {
@@ -92,13 +94,13 @@ async function putProd(req, res) {
     const body = req.body;
     producto
         .updateById(id,body)
-        .then(() => res.json(producto.byId));
+        .then(() => res.json(producto.productos.byId));
 }
 async function deleteProd(req,res) {
     const { id } = req.params;
     producto
         .deleteById(id)
-        .then(() => res.json(producto.datos))
+        .then(() => res.json(producto.productos.datos))
 }
 
 

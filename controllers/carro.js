@@ -44,5 +44,4 @@ async function deleteProd(req, res) {
         .then(() => res.json(Carro.carro));
 }
 
-
 module.exports = {getCarrito, postCarrito, postProd, deleteProd}

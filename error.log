@@ -664,3 +664,239 @@
 [2022-12-05T19:20:35.008] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'getUserInfo')
     at Producto.getAll (C:\Users\milog\Documents\32080\model\DAOs\productos.js:18:42)
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T21:06:27.331] [ERROR] error - [Error: ENOENT: no such file or directory, open 'C:\Users\milog\Documents\api\productos.txt'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\milog\\Documents\\api\\productos.txt'
+}
+[2022-12-05T21:06:53.604] [ERROR] error - SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at ProductoFileDAO.save (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:18:34)
+    at async Producto.save (C:\Users\milog\Documents\32080\api\productos.js:9:16)
+[2022-12-05T21:08:12.864] [ERROR] error - TypeError: datos.map is not a function
+    at ProductoFileDAO.save (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:19:31)
+    at async Producto.save (C:\Users\milog\Documents\32080\api\productos.js:9:16)
+[2022-12-05T21:08:33.250] [ERROR] error - TypeError: datos.push is not a function
+    at ProductoFileDAO.save (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:22:25)
+    at async Producto.save (C:\Users\milog\Documents\32080\api\productos.js:9:16)
+[2022-12-05T21:28:20.702] [ERROR] error - SyntaxError: Unexpected token , in JSON at position 347
+    at JSON.parse (<anonymous>)
+    at ProductoFileDAO.getProds (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:75:34)
+    at async Producto.getProds (C:\Users\milog\Documents\32080\api\productos.js:21:16)
+    at async getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:23)
+[2022-12-05T21:29:31.010] [ERROR] error - SyntaxError: Unexpected token { in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at ProductoFileDAO.getProds (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:75:34)
+    at async Producto.getProds (C:\Users\milog\Documents\32080\api\productos.js:21:16)
+    at async getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:23)
+[2022-12-05T21:31:43.516] [ERROR] error - TypeError: datos.map is not a function
+    at ProductoFileDAO.save (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:19:31)
+    at async Producto.save (C:\Users\milog\Documents\32080\api\productos.js:9:16)
+[2022-12-05T21:32:43.930] [ERROR] error - TypeError: datos.map is not a function
+    at ProductoFileDAO.save (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:20:31)
+    at async Producto.save (C:\Users\milog\Documents\32080\api\productos.js:9:16)
+[2022-12-05T22:13:52.657] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'datos')
+    at ProductoMongoDAO.getProds (C:\Users\milog\Documents\32080\model\DAOs\productosMongo.js:71:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Producto.getProds (C:\Users\milog\Documents\32080\api\productos.js:21:16)
+[2022-12-05T22:13:54.060] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'datos')
+    at ProductoMongoDAO.getProds (C:\Users\milog\Documents\32080\model\DAOs\productosMongo.js:71:35)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Producto.getProds (C:\Users\milog\Documents\32080\api\productos.js:21:16)
+[2022-12-05T22:21:31.144] [ERROR] error - TypeError: Cannot set properties of undefined (setting 'datos')
+    at ProductoFileDAO.getProds (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:76:34)
+    at async Producto.getProds (C:\Users\milog\Documents\32080\api\productos.js:20:16)
+    at async getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:23)
+[2022-12-05T22:22:10.957] [ERROR] error - TypeError: Cannot set properties of undefined (setting 'datos')
+    at ProductoFileDAO.getProds (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:76:34)
+    at async Producto.getProds (C:\Users\milog\Documents\32080\api\productos.js:20:16)
+    at async getLogin (C:\Users\milog\Documents\32080\controllers\productos.js:12:23)
+[2022-12-05T22:23:19.247] [ERROR] error - TypeError: datos.find is not a function
+    at ProductoFileDAO.getById (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:54:41)
+    at async Producto.getById (C:\Users\milog\Documents\32080\api\productos.js:16:16)
+[2022-12-05T22:42:04.341] [ERROR] error - Error: Element at index 0 is not a valid array element. Nested arrays are not supported.
+    at validateArrayElement (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:457:15)
+    at ArrayUnionTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:380:13)
+    at C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:56
+    at Map.forEach (<anonymous>)
+    at DocumentTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:25)
+    at WriteBatch.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\write-batch.js:397:19)
+    at DocumentReference.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\reference.js:430:14)
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:170:36)
+[2022-12-05T22:43:45.604] [ERROR] error - Error: Element at index 0 is not a valid array element. Nested arrays are not supported.
+    at validateArrayElement (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:457:15)
+    at ArrayUnionTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:380:13)
+    at C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:56
+    at Map.forEach (<anonymous>)
+    at DocumentTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:25)
+    at WriteBatch.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\write-batch.js:397:19)
+    at DocumentReference.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\reference.js:430:14)
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:171:36)
+[2022-12-05T22:45:16.884] [ERROR] error - Error: Element at index 0 is not a valid array element. Nested arrays are not supported.
+    at validateArrayElement (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:457:15)
+    at ArrayUnionTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:380:13)
+    at C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:56
+    at Map.forEach (<anonymous>)
+    at DocumentTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:25)
+    at WriteBatch.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\write-batch.js:397:19)
+    at DocumentReference.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\reference.js:430:14)
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:171:36)
+[2022-12-05T22:55:12.530] [ERROR] error - ReferenceError: i is not defined
+    at C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:37:59
+    at Array.findIndex (<anonymous>)
+    at ProductoFileDAO.updateById (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:37:40)
+    at async Producto.updateById (C:\Users\milog\Documents\32080\api\productos.js:12:16)
+[2022-12-05T22:55:40.485] [ERROR] error - ReferenceError: noticiaActualizada is not defined
+    at ProductoFileDAO.updateById (C:\Users\milog\Documents\32080\model\DAOs\productosFile.js:40:45)
+    at async Producto.updateById (C:\Users\milog\Documents\32080\api\productos.js:12:16)
+[2022-12-05T23:22:07.779] [ERROR] error - Error: Element at index 0 is not a valid array element. Cannot use "undefined" as a Firestore value. If you want to ignore undefined values, enable `ignoreUndefinedProperties`.
+    at validateUserInput (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\serializer.js:279:19)
+    at validateArrayElement (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:459:40)
+    at ArrayUnionTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:380:13)
+    at C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:56
+    at Map.forEach (<anonymous>)
+    at DocumentTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:25)
+    at WriteBatch.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\write-batch.js:397:19)
+    at DocumentReference.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\reference.js:430:14)
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:171:36)
+[2022-12-05T23:25:22.585] [ERROR] error - ReferenceError: obj is not defined
+    at C:\Users\milog\Documents\32080\model\DAOs\carro.js:172:17
+    at Array.map (<anonymous>)
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:171:40)
+[2022-12-05T23:26:38.795] [ERROR] error - ReferenceError: productoAdd is not defined
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:171:66)
+[2022-12-05T23:26:49.154] [ERROR] error - Error: Element at index 0 is not a valid array element. Nested arrays are not supported.
+    at validateArrayElement (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:457:15)
+    at ArrayUnionTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\field-value.js:380:13)
+    at C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:56
+    at Map.forEach (<anonymous>)
+    at DocumentTransform.validate (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\document.js:858:25)
+    at WriteBatch.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\write-batch.js:397:19)
+    at DocumentReference.update (C:\Users\milog\Documents\32080\node_modules\@google-cloud\firestore\build\src\reference.js:430:14)
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:170:36)
+[2022-12-05T23:31:43.461] [ERROR] error - TypeError: getProduct.find is not a function
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:170:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T23:32:12.774] [ERROR] error - TypeError: getProduct.find is not a function
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:170:38)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T23:36:53.319] [ERROR] error - ReferenceError: product is not defined
+    at Carrito.addProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:172:66)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-12-05T23:44:58.160] [ERROR] error - ReferenceError: getProduct is not defined
+    at Carrito.deleteProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:189:67)
+    at deleteProd (C:\Users\milog\Documents\32080\controllers\carro.js:44:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:376:14)
+    at param (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:376:14)
+[2022-12-05T23:46:15.537] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'getById')
+    at Producto.getById (C:\Users\milog\Documents\32080\api\productos.js:16:37)
+    at Carrito.deleteProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:188:45)
+    at deleteProd (C:\Users\milog\Documents\32080\controllers\carro.js:44:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:376:14)
+[2022-12-05T23:46:45.276] [ERROR] error - TypeError: Cannot read properties of undefined (reading 'getById')
+    at Producto.getById (C:\Users\milog\Documents\32080\api\productos.js:16:37)
+    at Carrito.deleteProdByCartId (C:\Users\milog\Documents\32080\model\DAOs\carro.js:188:45)
+    at deleteProd (C:\Users\milog\Documents\32080\controllers\carro.js:44:10)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\milog\Documents\32080\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\milog\Documents\32080\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:284:15
+    at param (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:365:14)
+    at param (C:\Users\milog\Documents\32080\node_modules\express\lib\router\index.js:376:14)
+[2022-12-06T00:53:11.975] [ERROR] error - [Error [ValidationError]: "name" must be a string] {
+  _original: {
+    name: 76,
+    price: 76,
+    qty: 17,
+    img: '/public/images/1.jpg',
+    desc: 'Dolore numquam odit soluta possimus, laboriosam nobis quis iste esse, erat nulla. Sed aliquam nibh eget sem'
+  },
+  details: [
+    {
+      message: '"name" must be a string',
+      path: [Array],
+      type: 'string.base',
+      context: [Object]
+    }
+  ]
+}
+[2022-12-06T00:54:22.712] [ERROR] error - [Error [ValidationError]: "name" is required] {
+  _original: {},
+  details: [
+    {
+      message: '"name" is required',
+      path: [Array],
+      type: 'any.required',
+      context: [Object]
+    }
+  ]
+}
+[2022-12-06T00:54:31.526] [ERROR] error - [Error [ValidationError]: "price" is required] {
+  _original: {
+    name: 'Ngueye',
+    qty: 17,
+    img: '/public/images/1.jpg',
+    desc: 'Dolore numquam odit soluta possimus, laboriosam nobis quis iste esse, erat nulla. Sed aliquam nibh eget sem'
+  },
+  details: [
+    {
+      message: '"price" is required',
+      path: [Array],
+      type: 'any.required',
+      context: [Object]
+    }
+  ]
+}
+[2022-12-06T00:56:49.211] [ERROR] error - [Error [ValidationError]: "name" is required] {
+  _original: {},
+  details: [
+    {
+      message: '"name" is required',
+      path: [Array],
+      type: 'any.required',
+      context: [Object]
+    }
+  ]
+}
+[2022-12-06T00:57:34.720] [ERROR] error - [Error [ValidationError]: "name" must be a string] {
+  _original: {
+    name: 33,
+    price: 76,
+    qty: 17,
+    img: '/public/images/1.jpg',
+    desc: 'Dolore numquam odit soluta possimus, laboriosam nobis quis iste esse, erat nulla. Sed aliquam nibh eget sem'
+  },
+  details: [
+    {
+      message: '"name" must be a string',
+      path: [Array],
+      type: 'string.base',
+      context: [Object]
+    }
+  ]
+}
+[2022-12-06T00:58:35.420] [ERROR] error - [Error [ValidationError]: "name" is required] {
+  _original: {},
+  details: [
+    {
+      message: '"name" is required',
+      path: [Array],
+      type: 'any.required',
+      context: [Object]
+    }
+  ]
+}
