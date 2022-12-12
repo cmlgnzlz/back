@@ -1,108 +1,92 @@
 const {logger} = require('../config/logger');
-const Carrito = require('../model/DAOs/carro');
-const Producto = require('../api/productos');
-let producto = new Producto()
-let Carro = new Carrito()
+const fs = require("fs");
+const { Console } = require('console');
 
-async function getLogin(req,res) {
-    logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
-    const carrId = req.user.carrito;
-    const user = req.user.username;
-    const productos = [];
-    productos.datos = await producto.getProds();
-    const userdata = await Carro.getUserInfo(carrId);
-    productos.userdata = userdata.userdata;
-    console.log(productos)
-    res.render('index.pug', {productos:productos.datos, usuario: user, userdata:productos.userdata});
-};
+const productosObj = {};
 
-async function postSignup(req,res) {
-    logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
-    const userData = req.body;
-    Carro
-        .saveNewCart(userData)
-        .then(() => res.redirect('/login/subidor'));
-};
-
-async function getSignup(req, res) {
-    logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
-    Carro
-        .newCart()
-        .then(() => res.render('signup.pug', {carro:Carro.carro}));
-};
-
-async function failSignup(req, res) {
-    logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
-    res.render('failsignup.pug');
-};
-
-async function failLogin(req, res) {
-    logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
-    res.render('failogin.pug');
-};
-
-async function getLogout(req, res) {
-    logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
-    if (req.isAuthenticated()) {
-        const { username, password } = req.user;
-        const user = { username, password };
-        req.logout();
-        res.render('logout.pug', {usuario:user});
-    } 
-    else {
-        res.render('login.pug');
+class Producto {
+    constructor(id, { name, price, qty, img, desc }) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.qty = qty;
+        this.img = img;
+        this.desc = desc;
     }
-};
+}
 
-async function subidor(req, res) {
-    if(req.user){
-        let id = req.user.carrito;
-        let aPath = req.file.path;
-        Carro
-            .saveAvatar(id,aPath)
-            .then(() => res.redirect('/'));
+async function getData() {
+    let datos = await fs.promises.readFile("./api/productos.txt","utf-8");
+    let datosJson = JSON.parse(datos)
+    return datosJson
+}
+
+async function saveData(datosJson){
+    let datosFS = JSON.stringify(datosJson)
+    fs.promises.writeFile("./api/productos.txt",datosFS)
+    return true
+}
+
+async function getProds({ campo, valor }) {
+    let datosJson = await getData()
+    let productos = Object.values(datosJson);
+    if (campo && valor) {
+        return productos.filter((i) => i[campo] == valor);
     } else {
-        res.render('login.pug');
+        return productos;
     }
-};
-
-async function getProd(req, res) {
-    logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
-    producto
-        .getProds()
-        .then(() => res.json(producto.productos.datos));
 }
 
-async function getProdById(req, res) {
-    logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
-    const { id } = req.params;
-    producto
-        .getById(id)
-        .then(() => res.json(producto.productos.byId));
-}
-async function postProd(req, res) {
-    logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
-    const product = req.body;
-    producto
-        .save(product)
-        .then(() => res.json(producto.productos.byId));
+async function getProdById({ id }) {
+    let datosJson = await getData()
+    if(!datosJson.find(i=>i.id == id)){
+        throw new Error("No encontrado")
+    }
+    let productoArr = datosJson.filter( i => i.id == id)
+    let product = productoArr.find(obj => {
+            return obj
+    })
+    return product
 }
 
-async function putProd(req, res) {
-    logger.info(`ruta '/api/productos${req.url}' metodo '${req.method}'`);
-    const { id } = req.params
-    const body = req.body;
-    producto
-        .updateById(id,body)
-        .then(() => res.json(producto.productos.byId));
-}
-async function deleteProd(req,res) {
-    const { id } = req.params;
-    producto
-        .deleteById(id)
-        .then(() => res.json(producto.productos.datos))
+async function postProd({ datos }) {
+    let datosJson = await getData()
+    let maxId = datosJson.map(i=>i.id).sort((a, b) => {if(a == b) {return 0;}if(a < b) {return -1;}return 1;}).splice(-1);
+    let nuevoId = parseInt(maxId)+1
+    let nuevoProd = new Producto(nuevoId, datos)
+    await datosJson.push(nuevoProd);
+    let saveDatosJson = await saveData(datosJson);
+    return nuevoProd;
 }
 
+async function putProd({ id, datos }) {
+    let datosJson = await getData()
+    console.log(datosJson)
+    if (!datosJson.find(i=>i.id == id)){
+        throw new Error("No encontrado")
+    } 
+    let producto = datos
+    let indice = datosJson.findIndex(i=>i.id == id);
+    let productoActual = datosJson[indice] || {};
+    let productoActualizado = { ...productoActual, ...producto };
+    datosJson.splice(indice, 1, productoActualizado)
+    console.log(datosJson)
+    let saveDatosJson = await saveData(datosJson);
+    return productoActualizado
+}
 
+async function deleteProd({ id }) {
+    let datosJson = await getData()
+    console.log(datosJson)
+    if (!datosJson.find(i=>i.id == id)){
+        throw new Error("No encontrado")
+    } 
+    let indice = datosJson.findIndex(i=>i.id == id);
+    let borrado = datosJson[indice]
+    datosJson.splice(indice, 1)
+    let saveDatosJson = await saveData(datosJson)
+    return borrado
 
-module.exports = {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, subidor, getProd, getProdById, postProd, putProd, deleteProd};
+}
+
+module.exports = { getProds, getProdById, postProd, putProd, deleteProd };

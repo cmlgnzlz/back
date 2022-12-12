@@ -47,3 +47,60 @@
 >>>
 >>>GET de /api/productos/:id     orracto un producto por id
 
+EJ GETPRODS
+query {
+ getProds{
+  name
+  id
+ }
+}
+
+EJ GETPRODBYID
+query {
+ getProdById(id:3) {
+  name
+  id
+ }
+}
+
+EJ POSTPROD
+mutation {
+ postProd(datos: {
+  	name: "Mijail",
+    price: 330,
+    qty: 21,
+    img: "/public/images/5.jpg",
+    desc: "Hola"  
+ })
+{
+  id
+  name
+}
+}
+
+EJPUTPROD
+mutation {
+ putProd(id:"3", 
+  datos: {
+  	name: "Mijail",
+    price: 330,
+    qty: 21,
+    img: "/public/images/5.jpg",
+    desc: "Hola"  
+ })
+{
+  id
+  name
+  price
+  qty
+}
+}
+
+EJ DELETEPROD
+mutation {
+  deleteProd(id: "8") {
+    id
+    name
+    price
+  }
+}

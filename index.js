@@ -1,78 +1,40 @@
 const express = require('express');
 const compression = require('compression')
-const dotenv = require("dotenv");
-const path = require("path");
-require("dotenv").config(
-    {path: path.resolve(process.cwd(), process.env.NODE_ENV + ".env")}
-);
+require("dotenv").config();
 const PORT = process.env.PORT || 5000
 const app = express();
+const cors = require("cors");
+const { graphqlHTTP } =require("express-graphql");
+const { getProds, getProdById, postProd, putProd, deleteProd } = require("./controllers/productos");
+const schema = require("./model/models/schema")
 
 const httpServer = require("http").createServer(app);
 httpServer.listen(PORT, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
 
-const mongoose = require('mongoose');
-
-mongoose
-    .connect(process.env.MONGOADD)
-    .then(() => console.log("Connected to DB"))
-    .catch((e) => {
-        console.error(e);
-        throw "ERROR CONECTANDO A LA DB";
-    });
-
-const io = require("socket.io")(httpServer);
-
-const { logger, loggerWarn }  = require('./config/logger')
+const { loggerWarn }  = require('./config/logger')
 
 app.use(compression())
+app.use(cors());
 app.use(express.json());
 app.use('/public', express.static(__dirname + "/public"));
-app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
 
-require('./config/passport')(app)
-
-const routerInfo = require('./routers/routerInfo')
-const routerCarro = require('./routers/routerCarro')
-const routerDatos = require('./routers/routerDatos')
-const routerProds = require('./routers/routerProds')
-app.use('/info', routerInfo)
-app.use('/login', routerDatos)
-app.use('/api/carrito', routerCarro)
-app.use('/api/productos', routerProds)
-app.set('view engine', 'pug');
-app.set('views', './views');
-
-app.get("/", (req,res) => {
-    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
-    if (req.isAuthenticated()) {
-        res.redirect('/login')
-    } 
-    else {
-        res.render('login.pug')
-    }
-});
+app.use(
+    "/api/productos",
+    graphqlHTTP({
+        schema: schema,
+        rootValue: {
+        getProds,
+        getProdById,
+        postProd,
+        putProd,
+        deleteProd,
+        },
+        graphiql: true,
+    })
+);
 
 app.get('/favicon.ico', (req, res) => res.status(200))
-
-const Chat = require('./model/DAOs/chat')
-const chat = new Chat();
-io.on('connect', (socket) => {
-    console.log('Usuario conectado ' + socket.id);
-
-    socket.on('logOn', () => {
-        chat
-        .getChat()
-        .then((chatNormalized) => io.sockets.emit('chat', { chat:chatNormalized } ));
-    })
-
-    socket.on('mensaje', (mensaje) => {
-        chat
-        .sendChat(mensaje)
-        .then((chatNormalized) => io.sockets.emit('chat', { chat:chatNormalized } ));
-    })
-})
 
 app.all("*", (req,res) => {
     loggerWarn.warn(`ruta '${req.url}' metodo '${req.method}' no implementado`);  
@@ -81,3 +43,5 @@ app.all("*", (req,res) => {
         descripcion: `ruta '${req.url}' metodo '${req.method}' no implementado`
     });
 });
+
+
