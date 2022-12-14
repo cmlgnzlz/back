@@ -6,7 +6,7 @@ const app = express();
 const cors = require("cors");
 const { graphqlHTTP } =require("express-graphql");
 const { getProds, getProdById, postProd, putProd, deleteProd } = require("./controllers/productos");
-const schema = require("./model/models/schema")
+const schema = require("./models/schema")
 
 const httpServer = require("http").createServer(app);
 httpServer.listen(PORT, () => console.log(`Server ON. Escuchando en el puerto ${httpServer.address().port}`));
