@@ -1,7 +1,7 @@
 {
   "name": "camilogonzalez",
-  "version": "0.2.1",
-  "description": "entrega 21",
+  "version": "1.0",
+  "description": "Proyecto final",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
