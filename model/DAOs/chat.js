@@ -9,7 +9,7 @@ class Chat{
     
     async getChat(){
         try {
-            const chat = await esquemaChat.find();
+            const chat = await esquemaChat.find({tipo:'usuario'});
             return chat;
         } catch (error) {
             loggerErr.error(error);
@@ -20,7 +20,7 @@ class Chat{
         try {
             let msgNuevo = new esquemaChat(mensaje)
             await msgNuevo.save()
-            let chatNuevo = await esquemaChat.find();
+            let chatNuevo = this.getChat();
             return chatNuevo;
         } catch (error) {
             loggerErr.error(error);
@@ -29,8 +29,22 @@ class Chat{
 
     async getChatPriv(chatId){
         try {
-            const chat = await esquemaChat.find({email:chatId});
+            const chat = await esquemaChat.find({email:chatId,tipo:'usuario'});
             return chat;
+        } catch (error) {
+            loggerErr.error(error);
+        }
+    }
+
+    async getChatAdmin(){
+        try {
+            const chat = await esquemaChat.find({tipo:'usuario'});
+            let emails = [];
+            const usuarios = chat.forEach((value) => {
+                emails.push(value.email);
+            })
+            const usuariosClean = [...new Set(emails)];
+            return usuariosClean;
         } catch (error) {
             loggerErr.error(error);
         }
@@ -42,7 +56,7 @@ class Chat{
             await msgNuevo.save()
             let chatId = mensaje.email
             console.log(chatId)
-            let chatNuevo = await esquemaChat.find({email:chatId});
+            let chatNuevo = await esquemaChat.find({email:chatId,tipo:'usuario'});
             return chatNuevo;
         } catch (error) {
             loggerErr.error(error);

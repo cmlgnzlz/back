@@ -39,21 +39,26 @@ class ProductoMongoDAO extends ProductoBase{
 
     async getById(id) {
         try {
-            let datos = await esquemaProd.find({_id:id})
-            if(datos.find(i=>i.id == id)){
-                let productoArr = datos.find(obj => {
-                    return obj
-                })
-                this.byId.id = productoArr.id;
-                this.byId.name = productoArr.name;
-                this.byId.price = productoArr.price;
-                this.byId.img = productoArr.img;
-                this.byId.desc = productoArr.desc
-                this.byId.cat = productoArr.cat;
+            this.byId = {};
+            if (id.match(/^[0-9a-fA-F]{24}$/)) {
+                let datos = await esquemaProd.find({_id:id})
+                if(datos.find(i=>i.id == id)){
+                    let productoArr = datos.find(obj => {
+                        return obj
+                    })
+                    this.byId.id = productoArr.id;
+                    this.byId.name = productoArr.name;
+                    this.byId.price = productoArr.price;
+                    this.byId.img = productoArr.img;
+                    this.byId.desc = productoArr.desc
+                    this.byId.cat = productoArr.cat;
+                } else{
+                    this.byId = { error : 'producto no encontrado' }
+                }
             } else{
-                return this.byId
+                this.byId = { error : 'codigo no valido' }
             }
-            return this.byId;
+            return this.byId
         } catch (error) {
             loggerErr.error(error);
         }
@@ -71,9 +76,7 @@ class ProductoMongoDAO extends ProductoBase{
 
     async getProdbyCat(categoria){
         try {
-            console.log(categoria)
             let datos = await esquemaProd.find({cat:categoria});
-            console.log(datos)
             this.datos = datos;
             return this.datos
         } catch (error) {
@@ -83,14 +86,20 @@ class ProductoMongoDAO extends ProductoBase{
 
     async deleteById(id) {
         try {
-            let datos = await esquemaProd.find({_id:id})
-            if (datos.find(i=>i.id == id)){
-                const productoBorrar = await esquemaProd.deleteOne({_id:id});
-                let datos = await esquemaProd.find();
-                this.datos = datos;
-            } else{
-                this.datos = { error : 'producto no encontrado' };
+            this.datos = {};
+            if (id.match(/^[0-9a-fA-F]{24}$/)) {
+                let datos = await esquemaProd.find({_id:id})
+                if (datos.find(i=>i.id == id)){
+                    const productoBorrar = await esquemaProd.deleteOne({_id:id});
+                    let datos = await esquemaProd.find();
+                    this.datos = datos;
+                } else{
+                    this.datos = { error : 'producto no encontrado' };
+                }
+            } else {
+                this.datos = { error : 'codigo no valido' };
             }
+            return this.datos;
         } catch (error) {
             loggerErr.error(error);
         }

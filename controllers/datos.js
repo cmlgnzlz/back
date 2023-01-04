@@ -6,12 +6,7 @@ let Carro = new Carrito()
 
 async function getLogin(req,res) {
     logger.info(`ruta '/login${req.url}' metodo '${req.method}'`);
-    const user = req.user.username;
-    const productos = [];
-    productos.datos = await producto.getProds();
-    const userdata = await Carro.getUserInfo(user);
-    productos.userdata = userdata.userdata;
-    res.render('index.pug', {productos:productos.datos, usuario: user, userdata:productos.userdata});
+    res.redirect('/productos')
 };
 
 async function postSignup(req,res) {

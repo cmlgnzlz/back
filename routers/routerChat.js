@@ -1,8 +1,8 @@
 const Router = require('express'); 
-const {getChat, getChatPriv} = require("../controllers/chat");
+const {getChat, getChatPriv, getChatAdmin} = require("../controllers/chat");
 const routerChat = new Router();
 
-routerChat.get("/", getChat)
-routerChat.get("/:id", getChatPriv)
-
+routerChat.get("/", getChat);
+routerChat.get("/admin@admin", getChatAdmin);
+routerChat.get("/:id", getChatPriv);
 module.exports = routerChat

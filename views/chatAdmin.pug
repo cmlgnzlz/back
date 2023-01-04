@@ -1,0 +1,19 @@
+html
+    head
+        title='Chat'
+        script(src='/socket.io/socket.io.js')
+        script(src='../public/index.js')
+        style
+            include styles.css
+    div(id='navbar')
+        include navbar.pug
+        include userlog.pug
+    body
+        div(id='chat')
+            div(class='titulo')
+                span="Centro de mensajes"
+                a(class='nb-item' href=`/chat/${usuario}`) Chat privado
+                input(id='chatId' value=`${usuario}` style=("display:none")) 
+            div(id='cajaMensajes')
+                for email in chat
+                    a(class='nb-item' href=`/chat/${email}`) #{email}
