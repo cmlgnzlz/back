@@ -9,7 +9,7 @@ html
     body
         div(class='productos')
             div(class='titulo')
-                span="Carrito"
+                span="Modifica tu carro"
                 span= `${id}`
             div(class='productos')
                 table(style='width:90%', border='1')
@@ -19,20 +19,27 @@ html
                             th NOMBRE
                             th PRECIO
                             th QTY 
+                            th ELIMINAR 
                         for item in carrito
                             tr
                                 td(class='img')
                                     img(src=item.img)     
                                 td(class='text-name') #{item.name}
                                 td(class='text-price') $ #{item.price}
-                                td(class='text-price') #{item.qty}
-                form(id='logOutForm' method="POST" action="/carrito")
-                    div
-                        input(type='submit' id='submit' class='botonLogin' value='Comprar')
+                                td(class='text-name')
+                                    form(id='buyform' method="POST" action=`/carrito/${usuario}/productos/${item.id}`)
+                                        input(type='number' min="1" id=`${item.id}` name='qty' class='botonLogin' value=`${item.qty}`) 
+                                        div
+                                            input(type='submit' id='submit' class='botonLogin' value='Modificar')
+                                td(class='text-name')
+                                    form(id='deleteform' method="POST" action=`/carrito/${usuario}/productos/${item.id}/delete`)
+                                        div
+                                            input(type='submit' name='delete' class='botonLogin' value='Eliminar') 
+
                 form(id='logOutForm' method="GET" action="/productos")
                     div 
                         input(type='submit' class='botonLogin' value='Ver Productos')
-                form(id='logOutForm' method="GET" action=`/carrito/${usuario}`)
+                form(id='logOutForm' method="GET" action=`/carrito/`)
                     div 
-                        input(type='submit' id='submit' class='botonLogin' value='Modificar Carro')
+                        input(type='submit' id='submit' class='botonLogin' value='Volver al Carro')
     include footer.pug

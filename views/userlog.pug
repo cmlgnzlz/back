@@ -1,10 +1,8 @@
 div(class='userLog')
     a(class='userText')
-        img(class='avatar' src=userdata.avatar)
         span #{usuario}
-    a(class='nb-item' href='/api/carrito')
+    a(class='nb-item' href='/carrito')
         span="Carrito"
     a(class='logoutButton')
         form(id='logOutForm' method="GET" action="/login/logout")
-                div
-                    input(type='submit' id='submit' class='botonLogin' value='Salir')
+                input(type='submit' id='submit' class='botonLogin' value='Salir')

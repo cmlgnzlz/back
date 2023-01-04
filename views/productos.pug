@@ -6,13 +6,19 @@ div(class='productos')
             tbody(id='tabla')
                 tr
                     th ID
-                    th NOMBRE
-                    th PRECIO
-                    th IMG
+                    th Nombre
+                    th Precio
+                    th 
+                    th Comprar
                 for item in productos
                     tr
                         td(class='text-id') #{item.id}
                         td(class='text-name') #{item.name}
                         td(class='text-price') $ #{item.price}
                         td(class='img')
-                            img(src=item.img)         
+                            img(src=item.img)
+                        td
+                            form(id='buyform' method="POST" action=`/carrito/${usuario}/productos/${item.id}`)
+                                div
+                                    input(type='submit' id='submit' class='botonLogin' value='Agregar')
+

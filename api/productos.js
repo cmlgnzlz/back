@@ -19,6 +19,9 @@ class Producto{
     async getProds(){
         return await this.productos.getProds()
     }
+    async getProdbyCat(cat){
+        return await this.productos.getProdbyCat(cat)
+    }
 
     async deleteById(id) {
         return await this.productos.deleteById(id)

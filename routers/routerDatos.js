@@ -1,18 +1,8 @@
 const Router = require('express'); 
 const passport = require("passport");
-const {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, subidor} = require("../controllers/productos");
+const { getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, getChat } = require("../controllers/datos");
+const { carritoSucc } = require("../controllers/carro");
 const routerDatos = new Router();
-
-const multer = require('multer');
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
-    }
-});
-var upload = multer({ storage: storage });
 
 function auth(req, res, next) {
     if (req.isAuthenticated()) {
@@ -23,14 +13,14 @@ function auth(req, res, next) {
     }
 }
 
-routerDatos.get("/", auth, getLogin);
-routerDatos.post("/", passport.authenticate("login", { failureRedirect: "/login/failogin" }), getLogin);
-routerDatos.post("/signup", passport.authenticate("signup", { failureRedirect: "/login/failsignup" }), postSignup);
-routerDatos.get("/signup", getSignup);
-routerDatos.get("/failsignup", failSignup);
-routerDatos.get("/failogin", failLogin);
-routerDatos.get("/logout", getLogout);
-routerDatos.get('/subidor', (req, res) => {res.render('subidor.pug')});
-routerDatos.post('/subidor', upload.single('avatar'), subidor);
+routerDatos.get("/login", auth, getLogin);
+routerDatos.post("/login", passport.authenticate("login", { failureRedirect: "/login/failogin" }), getLogin);
+routerDatos.post("/login/signup", passport.authenticate("signup", { failureRedirect: "/login/failsignup" }), postSignup);
+routerDatos.get("/login/signup", getSignup);
+routerDatos.get("/login/failsignup", failSignup);
+routerDatos.get("/login/failogin", failLogin);
+routerDatos.get("/login/logout", getLogout);
+routerDatos.get("/carritosuccess", carritoSucc);
+routerDatos.get("/chat/", getChat)
 
 module.exports = routerDatos;

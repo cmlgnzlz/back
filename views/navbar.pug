@@ -1,5 +1,9 @@
 div(class='navbar')
-    a(class='nb-item' href='/')
-        span="Inicio"
-    a(class='nb-item' href='/info/')
-        span="Info"
+    a(class='nb-item' href='/') Inicio
+    a(class='nb-item' href='/info/') Info
+    div(class='dropdown')
+        a(class='nb-item' href='/productos/') Productos
+        div(class='dropdown-items')
+            a(class='nb-item' href='/productos/categoria/Pol') Polarizados
+            a(class='nb-item' href='/productos/categoria/Color') Colores
+    a(class='nb-item' href='/chat/') Chat

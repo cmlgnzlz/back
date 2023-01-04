@@ -42,12 +42,6 @@ socket.on("chat", (chat) => {
 });
 
 function chatear() {
-    const mail = document.getElementById("chatMail").value;
-    const nomb = document.getElementById("chatNomb").value;
-    const apel = document.getElementById("chatApel").value;
-    const edad = document.getElementById("chatEdad").value;
-    const alias = document.getElementById("chatAlias").value;
-    const avat = document.getElementById("chatAvat").value;
     const msg = document.getElementById("chatMensaje").value;
     const stamp = new Date().toLocaleString();
     const author = {

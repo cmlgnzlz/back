@@ -1,14 +1,10 @@
-const admin = require("firebase-admin");
-const serviceAccount = require("../../api/bd/fireback-addcb-firebase-adminsdk-w2tqk-52c47a4269.json");
+const esquemaCarro = require('../models/schemaCarro')
+const esquemaOrden = require('../models/schemaOrden')
 const {loggerErr} = require('../../config/logger')
 const Producto = require('../../api/productos');
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-  });
-
 const nodemailer = require("nodemailer")
-const adminEth = 'margaretta.oconnell38@ethereal.email'
+const adminEth = 'daphnee92@ethereal.email'
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
@@ -25,41 +21,20 @@ class Carrito{
         this.userdata = {};
     }
 
-    async newCart() {
-        try {
-            let db = admin.firestore();
-            let query = db.collection('carritos');
-            let snapshot = await query.get();
-            let cuenta = snapshot.size;
-            let id = cuenta+1;
-            let productos = [];
-            let carro = {id:id,productos:productos};
-            this.carro = carro;
-        } catch (error) {
-            loggerErr.error(error);
-        }  
-    }
-
     async saveNewCart(userData) { 
         try {
-            let db = admin.firestore();
-            let query = db.collection('carritos');
-            let id = userData.carroId;
-            let data = {};
-            data.username = userData.username
-            data.nombre = userData.nombre;
-            data.edad = userData.edad;
-            data.telefono = userData.telefono;
-            data.direccion = userData.direccion;
+            let tipo = "usuario"
+            let id = userData.username
+            let data = {nombre:userData.nombre,telefono:userData.telefono};
             let productos = [];
-            let carro = {id:id,data:data,productos:productos};
-            let doc = query.doc(`${id}`);
-            let carroVa = await doc.create(carro);
+            let carro = {id:id,data:data,productos:productos,tipo:tipo};
+            let carroNuevo = new esquemaCarro(carro);
+            await carroNuevo.save()
             this.carro = carro;
             const mailOptions = {
                 from: 'Servidor Node',
                 to: adminEth,
-                subject: 'Nuevo registro en servidor',
+                subject: 'Nuevo registro en el servidor',
                 html: `<div><p style="color: blue;font-size:2rem">Nuevo registro de:</p><p style="color: red;font-size:1.4rem">correo:${data.username}</p><p style="color: red;font-size:1.4rem">nombre:${data.nombre}</p><p style="color: red;font-size:1.4rem">direccion:${data.direccion}</p><p style="color: red;font-size:1.4rem">edad:${data.edad}</p><p style="color: red;font-size:1.4rem">telefono:${data.telefono}</p><p style="color: red;font-size:1.4rem">carrito:${id}</p></div>`
              }
              const info = await transporter.sendMail(mailOptions)
@@ -68,25 +43,17 @@ class Carrito{
         }
     }
 
-    async saveAvatar(id,aPath){
-        try {
-            let db = admin.firestore();
-            let query = db.collection('carritos');
-            let doc = query.doc(String(id));
-            const item = await doc.update({
-                avatar: admin.firestore.FieldValue.arrayUnion(aPath)
-            });
-        } catch (error) {
-            loggerErr.error(error);
-        }
-    }
-
     async deleteCartById(id) {
         try {
-            let db = admin.firestore();
-            let verBorrar = await db.collection('carritos').doc(id).get();
-            this.carro = verBorrar.data();
-            let borrar = await db.collection('carritos').doc(id).delete();
+            let filtro = {id:id};
+            let carro = await esquemaCarro.find(filtro)
+            if (carro.find(i=>i.id == id)){
+                const productoBorrar = await esquemaCarro.deleteOne(filtro);
+                let datos = await esquemaProd.find();
+                this.carro = datos;
+            } else{
+                this.carro = { error : 'carro no encontrado' };
+            }
         } catch (error) {
             loggerErr.error(error);
         }
@@ -94,12 +61,13 @@ class Carrito{
     
     async getByCartId(id){
         try {
-            let db = admin.firestore();
-            let query = db.collection('carritos');
-            let doc = query.doc(id);
-            let carro = await doc.get();
-            let carroData = carro.data();
-            this.carro = carroData
+            let filtro = {id:id};
+            let carro = await esquemaCarro.find(filtro)
+            if (carro.find(i=>i.id == id)){
+                this.carro = carro;
+            } else{
+                this.carro = { error : 'carro no encontrado' };
+            }
         } catch (error) {
             loggerErr.error(error);
         }
@@ -107,44 +75,102 @@ class Carrito{
 
     async getUserInfo(id){
         try {
-            let db = admin.firestore();
-            let query = db.collection('carritos');
-            let doc = query.doc(String(id));
-            let carro = await doc.get();
-            let carroData = carro.data();
-            this.carro = carroData.productos;
-            this.userdata = carroData.data;
-            let userAvat = carroData.avatar;
-            let avatArr = userAvat.find(obj => {
-                return obj
-            });
-            let avatString =`\\${avatArr}`;
-            this.userdata.avatar = avatString;
-            this.userdata.id = id;
+            let filtro = {id:id};
+            let carro = await esquemaCarro.find(filtro)
+            if (carro.find(i=>i.id == id)){
+                let carroArr = carro.find(obj => {
+                    return obj
+                })
+                this.id = carroArr.id
+                this.data = carroArr.data
+                this.carro = carroArr.productos;
+            } else {
+                this.carro = { error : 'carro no encontrado' };
+            }
             return this
         } catch (error) {
             loggerErr.error(error);
         }
     }
 
+    async addProdByCartId(id,id_prod,qty) {
+        let producto = new Producto();
+        try {
+            let cantidad = qty || 1;
+            let carro = await esquemaCarro.find({id:id});
+            let carroArr = carro.find(obj => {
+                return obj
+            })
+            let carroActual = carroArr.productos
+            let getProduct = await producto.getById(id_prod);
+            getProduct.qty = cantidad;
+            if(carroActual.find(i=> i.id ==! id_prod)){
+                carroActual.push(getProduct)
+                let doc = await esquemaCarro.findOneAndUpdate({ id },{productos: carroActual});
+                this.carro = carroActual
+            } else {
+                let carroNuevo = carroActual.filter(i=> i.id !== id_prod);
+                carroNuevo.push(getProduct);
+                let doc = await esquemaCarro.findOneAndUpdate({ id },{productos: carroNuevo});
+                this.carro = carroNuevo
+            }
+            return this
+        } catch (error) {
+            loggerErr.error(error);
+        }
+    }
+    
+    async deleteProdByCartId(id,id_prod) {
+        let producto = new Producto();
+        try {
+            let carro = await esquemaCarro.find({id:id})
+            let carroArr = carro.find(obj => {
+                return obj
+            })
+            let carroActual = carroArr.productos
+            if (carroActual.find(i=> i.id == id_prod)) {
+                let carroNuevo = carroActual.filter(i=> i.id !== id_prod);
+                let doc = await esquemaCarro.findOneAndUpdate({ id },{productos: carroNuevo});    
+                this.datos = carroNuevo
+            } else {
+                this.datos = { error: 'producto no existe en carro'}
+            }
+            return this.datos
+        } catch (error) {
+            loggerErr.error(error);
+        }   
+    }
+
     async sendUserCart(id) {
         try {
-            let db = admin.firestore();
-            let query = db.collection('carritos');
-            let doc = query.doc(String(id));
-            let carro = await doc.get();
-            let carroData = carro.data();
-            this.carro = carroData.productos;
-            this.userdata = carroData.data;
-            this.userdata.id = id;
-            let html = "<p style='color: blue;font-size:2rem'><a>Nuevo pedido de: " + this.userdata.username + "</p><p style='color: blue;font-size:1.6rem'><a>Id de carrito: " + this.userdata.id + "</a></p>"
-            const carroHtml = this.carro;
+            let orden = [];
+            let filtro = {id:id};
+            let carro = await esquemaCarro.find(filtro)
+            let carroArr = carro.find(obj => {
+                return obj
+            })
+            let productoArr = carroArr.productos;
+            const productoOrden = productoArr.map(item => {
+                const container = {};
+                container.name = item.name;
+                container.qty = item.qty;
+                return container;
+            })
+            orden.productos = productoOrden;
+            orden.userdata = carroArr.data;
+            orden.fyh = new Date().toLocaleString();
+            orden.estado = 'Generada';
+            orden.email = id;
+            let cuentaOrden = await esquemaOrden.countDocuments({ isDeleted: false })
+            orden.numero = cuentaOrden + 1
+            let ordenNueva = new esquemaOrden(orden);
+            await ordenNueva.save()
+            let html = "<p style='color: blue;font-size:2rem'><a>Nuevo pedido de: " +  orden.email + "</a></p>"
+            const carroHtml = orden.productos;
             carroHtml.forEach(producto => {
                 let carroProd = 
                     "<p style='font-size:1.4rem'><a style='color: green;'>Nombre: " + 
                     producto.name + 
-                    "</a> <a style='color: blue;'>Precio: $" + 
-                    producto.price +
                     "</a> <a  style='color: red;'>Cantidad: " +
                     producto.qty +
                     "</a></p>";
@@ -156,47 +182,13 @@ class Carrito{
                 subject: 'Nueva compra en servidor',
                 html: html
             };
+            const info = await transporter.sendMail(mailOptions)
         } catch (error) {
             loggerErr.error(error);
         }        
     }
-    async addProdByCartId(id,id_prod) {
-        let producto = new Producto();
-        try {
-            let db = admin.firestore();
-            let query = db.collection('carritos');
-            let doc = query.doc(String(id));
-            let getProduct = await producto.getById(id_prod);
-            const item = await doc.update({
-                productos: admin.firestore.FieldValue.arrayUnion(getProduct)
-            });
-            let carro = await doc.get();
-            let carroData = carro.data();
-            this.carro = carroData;
-        } catch (error) {
-            loggerErr.error(error);
-        }
-        
-    }
-    
-    async deleteProdByCartId(id,id_prod) {
-        let producto = new Producto();
-        try {
-            let db = admin.firestore()
-            let query = db.collection('carritos');
-            let doc = query.doc(String(id));
-            let getProduct = await producto.getById(id_prod);
-            console.log(getProduct)
-            const item = await doc.update({
-                productos: admin.firestore.FieldValue.arrayRemove(getProduct)
-            })
-            let carro = await doc.get();
-            let carroData = carro.data();
-            this.carro = carroData;    
-        } catch (error) {
-            loggerErr.error(error);
-        }   
-    }
+
+
 };
 
 module.exports = Carrito;

@@ -10,6 +10,7 @@ class Chat{
     constructor() {
         this.log = [];
     }
+    
     async getChat(){
         try {
             let chat = await fs.promises.readFile("api/chat.txt","utf-8");

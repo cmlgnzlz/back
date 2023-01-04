@@ -12,7 +12,7 @@ class ProductoBase{
         const productoSchema = Joi.object({
           name: Joi.string().required(),
           price: Joi.number().required(),
-          qty: Joi.number().required(),
+          cat: Joi.string().required(),
           img: Joi.string().required(),
           desc: Joi.string().required()
         });

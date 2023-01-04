@@ -38,16 +38,16 @@ const routerCarro = require('./routers/routerCarro')
 const routerDatos = require('./routers/routerDatos')
 const routerProds = require('./routers/routerProds')
 app.use('/info', routerInfo)
-app.use('/login', routerDatos)
-app.use('/api/carrito', routerCarro)
-app.use('/api/productos', routerProds)
+app.use('/', routerDatos)
+app.use('/carrito', routerCarro)
+app.use('/productos', routerProds)
 app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.get("/", (req,res) => {
     logger.info(`ruta '${req.url}' metodo '${req.method}'`);
     if (req.isAuthenticated()) {
-        res.redirect('/login')
+        res.redirect('/productos')
     } 
     else {
         res.render('login.pug')
