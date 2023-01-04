@@ -1,9 +1,5 @@
-const fs = require("fs");
-const normalizr = require("normalizr");
-const schema = normalizr.schema;
-const normalize = normalizr.normalize;
-const denormalize = normalizr.denormalize;
 const { loggerErr } = require('../../config/logger');
+const esquemaChat = require('../models/schemaChat')
 
 class Chat{
 
@@ -13,13 +9,8 @@ class Chat{
     
     async getChat(){
         try {
-            let chat = await fs.promises.readFile("api/chat.txt","utf-8");
-            let chatJson = JSON.parse(chat)
-            const author = new schema.Entity("authors",{},{ idAttribute: 'id' });
-            const message = new schema.Entity("messages", { author: author },{ idAttribute: 'stamp' });
-            const chats = new schema.Entity("chats", { chat: [message] });
-            const chatNormalized = normalize(chatJson, chats);
-            return chatNormalized;
+            const chat = await esquemaChat.find();
+            return chat;
         } catch (error) {
             loggerErr.error(error);
         }
@@ -27,21 +18,32 @@ class Chat{
 
     async sendChat(mensaje) {
         try {
-            let chateo = await fs.promises.readFile("api/chat.txt","utf-8");
-            let chateoJson = JSON.parse(chateo);
-            const author = new schema.Entity('authors',{},{ idAttribute: 'id' });
-            const message = new schema.Entity('messages', { author: author }, {idAttribute: 'stamp'});
-            const chats = new schema.Entity('chats', {  chat: [message] });
-            await chateoJson['chat'].push(mensaje);
-            const chatNormalized = await normalize(chateoJson, chats);
-            const denormalizedChat = denormalize(
-                chatNormalized.result,
-                chats,
-                chatNormalized.entities,
-            );
-            let chateoFS = JSON.stringify(denormalizedChat)
-            fs.promises.writeFile("api/chat.txt",chateoFS);
-            return chatNormalized;
+            let msgNuevo = new esquemaChat(mensaje)
+            await msgNuevo.save()
+            let chatNuevo = await esquemaChat.find();
+            return chatNuevo;
+        } catch (error) {
+            loggerErr.error(error);
+        }
+    }
+
+    async getChatPriv(chatId){
+        try {
+            const chat = await esquemaChat.find({email:chatId});
+            return chat;
+        } catch (error) {
+            loggerErr.error(error);
+        }
+    }
+
+    async sendChatPriv(mensaje) {
+        try {
+            let msgNuevo = new esquemaChat(mensaje)
+            await msgNuevo.save()
+            let chatId = mensaje.email
+            console.log(chatId)
+            let chatNuevo = await esquemaChat.find({email:chatId});
+            return chatNuevo;
         } catch (error) {
             loggerErr.error(error);
         }

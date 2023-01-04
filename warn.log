@@ -46,3 +46,6 @@
 [2023-01-03T22:34:15.208] [WARN] warn - ruta '/productos/categoria/cat' metodo 'GET' no implementado
 [2023-01-03T23:36:10.854] [WARN] warn - ruta '/chat/' metodo 'GET' no implementado
 [2023-01-03T23:42:55.399] [WARN] warn - ruta '/chat/' metodo 'GET' no implementado
+[2023-01-04T11:15:48.037] [WARN] warn - ruta '/chat/public/index.js' metodo 'GET' no implementado
+[2023-01-04T11:15:50.274] [WARN] warn - ruta '/chat/public/index.js' metodo 'GET' no implementado
+[2023-01-04T11:51:26.359] [WARN] warn - ruta '/chat/pedrito@dfc.com' metodo 'GET' no implementado

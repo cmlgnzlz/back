@@ -1,6 +1,6 @@
 const Router = require('express'); 
 const passport = require("passport");
-const { getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, getChat } = require("../controllers/datos");
+const { getLogin, postSignup, getSignup, failSignup, failLogin, getLogout } = require("../controllers/datos");
 const { carritoSucc } = require("../controllers/carro");
 const routerDatos = new Router();
 
@@ -21,6 +21,6 @@ routerDatos.get("/login/failsignup", failSignup);
 routerDatos.get("/login/failogin", failLogin);
 routerDatos.get("/login/logout", getLogout);
 routerDatos.get("/carritosuccess", carritoSucc);
-routerDatos.get("/chat/", getChat)
+
 
 module.exports = routerDatos;

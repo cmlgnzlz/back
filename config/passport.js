@@ -1,5 +1,5 @@
 const passport = require('passport');
-require('./strategies/local.strategy')(); //Or whatever strategy you are using
+require('./strategies/local.strategy')();
 const esquemaUser = require('./models/schemaUser');
 
 const passportConfig = (app) => {

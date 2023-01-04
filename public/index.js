@@ -1,38 +1,39 @@
 const socket = io();
-const schema = normalizr.schema;
-const denormalize = normalizr.denormalize;
-
-socket.on("connect", () => {
-    socket.emit("logOn");
-    setTimeout(function (){
-        document.getElementById("cajaMensajes").scrollTop = 999999999
-      }, 10)
-});
 
 socket.on("chat", (chat) => {
     let html = [];
-    const normalizedChat = chat.chat;
-    const author = new schema.Entity('authors',{},{ idAttribute: 'mail' });
-    const message = new schema.Entity('messages', { author: author });
-    const chats = new schema.Entity('chats', {  chat: [message] });
-    const denormalizedChat = denormalize(
-        normalizedChat.result,
-        chats,
-        normalizedChat.entities,
-    );
-    let compression = (JSON.stringify(chat).length / JSON.stringify(denormalizedChat).length)*100;
-    document.getElementById("cajaCompresion").innerText = `El porcentaje de compresion es ${compression.toString().slice(0, 5)}%`;
-    const chatLog = denormalizedChat.chat;
-    chatLog.forEach(mensaje => {
+    let chatOrden = chat.chat;
+    chatOrden.forEach(mensaje => {
         let xat = 
             "<p><span class='mensajeMail'> " + 
-            mensaje.id + 
+            mensaje.email + 
             "</span> [<span class='mensajeStamp'>" + 
-            mensaje.stamp +
+            mensaje.fyh +
             "</span>]: <span class='mensajeMsg'>" +
-            mensaje.text +
+            mensaje.msg +
             "</span></p>";
-        html = xat + html
+        html = html + xat
+    });
+    const cajaId = document.getElementById("cajaMensajes");
+    cajaId.innerHTML = html; 
+    setTimeout(function (){ 
+        cajaId.scrollTop = 0;
+      }, 10)    
+});
+
+socket.on("chatPriv", (chat) => {
+    let html = [];
+    let chatOrden = chat.chat;
+    chatOrden.forEach(mensaje => {
+        let xat = 
+            "<p><span class='mensajeMail'> " + 
+            mensaje.email + 
+            "</span> [<span class='mensajeStamp'>" + 
+            mensaje.fyh +
+            "</span>]: <span class='mensajeMsg'>" +
+            mensaje.msg +
+            "</span></p>";
+        html = html + xat
     });
     const cajaId = document.getElementById("cajaMensajes");
     cajaId.innerHTML = html; 
@@ -42,22 +43,40 @@ socket.on("chat", (chat) => {
 });
 
 function chatear() {
-    const msg = document.getElementById("chatMensaje").value;
-    const stamp = new Date().toLocaleString();
-    const author = {
-        id:mail,
-        nombre:nomb,
-        apellido:apel,
-        edad:edad,
-        alias:alias,
-        avatar:avat,
+    let msg = document.getElementById("chatMensaje").value;
+    let fyh = new Date().toLocaleString();
+    let email = document.getElementById("chatId").value; 
+    let mensaje = {
+        email:email,
+        fyh:fyh,
+        msg: msg
     }
-    const mensaje = {
-        id:mail,
-        author: author,
-        text: msg,
-        stamp:stamp
+    if(mensaje.email=="admin@admin"){
+        mensaje.tipo = "sistema"
+    } else {
+        mensaje.tipo = "usuario"
     }
     socket.emit("mensaje", mensaje);
     return false;
 };
+
+function chatearPriv() {
+    let user = document.getElementById("userChatId").innerText;
+    if(user=="admin@admin"){
+        let msg = document.getElementById("chatMensaje").value;
+        let fyh = new Date().toLocaleString();
+        let email = document.getElementById("chatmsgId").value; 
+        console.log(email)
+        let mensaje = {
+            email:email,
+            fyh:fyh,
+            msg: msg,
+            tipo:"sistema"
+        }
+        socket.emit("mensajepriv", mensaje);
+    } else {
+        window.alert("No estas autorizado para responder mensajes");
+    }
+    return false;
+};
+

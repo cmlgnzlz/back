@@ -12,17 +12,19 @@ html
         div(id='chat')
             div(class='titulo')
                 span="Centro de mensajes"
-                a(class='nb-item' href=`/chat/${usuario}`) Chat privado
+                a(class='nb-item' href=`/chat/`) Chat general
                 input(id='chatId' value=`${usuario}` style=("display:none")) 
             div(id='cajaMensajes')
                 for msg in chat
                     p
+                        input(id='chatmsgId' value=`${msg.email}` style=("display:none")) 
                         span(class='mensajeMail') #{msg.email}
                         span=" ["
                         span(class='mensajeStamp') #{msg.fyh}
                         span="]: "
                         span(class='mensajeMsg') #{msg.msg}
-            form(id='chatForm' onsubmit='return chatear()')
-                input(id='chatMensaje' type='text' name='chatMensaje' value='' required )
-                div( class='botones' )
-                    input(type='submit' id='submit' value='Enviar Mensaje')
+                    form(id='respForm' onsubmit='return chatearPriv()')
+                        input(id='chatMensaje' type='text' name='chatMensaje' value='' required )
+                        input(id='msgId' value=`${usuario}` style=("display:none")) 
+                        div( class='botones' )
+                            input(type='submit' id='submit' value='Responder Mensaje')

@@ -1521,3 +1521,19 @@
     at Route.dispatch (C:\Users\milog\pfinal\back\node_modules\express\lib\router\route.js:114:3)
     at Layer.handle [as handle_request] (C:\Users\milog\pfinal\back\node_modules\express\lib\router\layer.js:95:5)
     at C:\Users\milog\pfinal\back\node_modules\express\lib\router\index.js:284:15
+[2023-01-04T11:34:40.550] [ERROR] error - ReferenceError: email is not defined
+    at Chat.sendChat (C:\Users\milog\pfinal\back\model\DAOs\chat.js:22:13)
+    at Socket.<anonymous> (C:\Users\milog\pfinal\back\index.js:73:14)
+    at Socket.emit (node:events:513:28)
+    at Socket.emitUntyped (C:\Users\milog\pfinal\back\node_modules\socket.io\dist\typed-events.js:69:22)
+    at C:\Users\milog\pfinal\back\node_modules\socket.io\dist\socket.js:465:39
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+[2023-01-04T11:41:26.136] [ERROR] error - ReferenceError: productoArr is not defined
+    at Chat.getChat (C:\Users\milog\pfinal\back\model\DAOs\chat.js:13:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2023-01-04T11:41:49.413] [ERROR] error - ReferenceError: productoArr is not defined
+    at Chat.getChat (C:\Users\milog\pfinal\back\model\DAOs\chat.js:13:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2023-01-04T11:42:06.875] [ERROR] error - ReferenceError: productoArr is not defined
+    at Chat.getChat (C:\Users\milog\pfinal\back\model\DAOs\chat.js:13:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)

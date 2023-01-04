@@ -33,13 +33,15 @@ app.use(express.urlencoded({ extended: true }));
 
 require('./config/passport')(app)
 
-const routerInfo = require('./routers/routerInfo')
-const routerCarro = require('./routers/routerCarro')
 const routerDatos = require('./routers/routerDatos')
+const routerCarro = require('./routers/routerCarro')
+const routerChat = require('./routers/routerChat');
+const routerInfo = require('./routers/routerInfo')
 const routerProds = require('./routers/routerProds')
-app.use('/info', routerInfo)
 app.use('/', routerDatos)
 app.use('/carrito', routerCarro)
+app.use('/chat', routerChat)
+app.use('/info', routerInfo)
 app.use('/productos', routerProds)
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -56,21 +58,22 @@ app.get("/", (req,res) => {
 
 app.get('/favicon.ico', (req, res) => res.status(200))
 
-const Chat = require('./model/DAOs/chat')
+const Chat = require('./model/DAOs/chat');
 const chat = new Chat();
+
 io.on('connect', (socket) => {
     console.log('Usuario conectado ' + socket.id);
 
-    socket.on('logOn', () => {
-        chat
-        .getChat()
-        .then((chatNormalized) => io.sockets.emit('chat', { chat:chatNormalized } ));
-    })
-
     socket.on('mensaje', (mensaje) => {
         chat
-        .sendChat(mensaje)
-        .then((chatNormalized) => io.sockets.emit('chat', { chat:chatNormalized } ));
+            .sendChat(mensaje)
+            .then((chat) => io.sockets.emit('chat', { chat:chat } ));
+    })
+
+    socket.on('mensajepriv', (mensaje) => {
+        chat
+            .sendChatPriv(mensaje)
+            .then((chat) => io.sockets.emit('chatPriv', { chat:chat } ));
     })
 })
 
@@ -81,3 +84,4 @@ app.all("*", (req,res) => {
         descripcion: `ruta '${req.url}' metodo '${req.method}' no implementado`
     });
 });
+

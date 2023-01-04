@@ -50,15 +50,4 @@ async function getLogout(req, res) {
     }
 };
 
-async function getChat(req, res) {
-    logger.info(`ruta '${req.url}' metodo '${req.method}'`);
-    if (req.isAuthenticated()) {
-        const user = req.user.username;
-        res.render('chat.pug', {usuario:user});
-    } 
-    else {
-        res.render('login.pug');
-    }
-};
-
-module.exports = {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout, getChat}
+module.exports = {getLogin, postSignup, getSignup, failSignup, failLogin, getLogout }

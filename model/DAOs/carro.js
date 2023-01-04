@@ -176,9 +176,10 @@ class Carrito{
                     "</a></p>";
                 html = html + carroProd
             });
+            const mailList = [adminEth,orden.email]
             const mailOptions = {
-                from: 'Servidor Node',
-                to: adminEth,
+                from: adminEth,
+                to: mailList,
                 subject: 'Nueva compra en servidor',
                 html: html
             };
